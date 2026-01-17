@@ -131,16 +131,12 @@
         .card {
             width: 253px;
             height: 380px;
-            background-color: #fffefe;
-            border-radius: 20px;
-            border: 10px solid #fffefe;
             position: relative;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
             margin-right: -20px; /* Overlap with next card */
             z-index: 1;
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
         }
 
         .card:hover {
@@ -148,6 +144,47 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             z-index: 100; /* Bring to front on hover */
             transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card.flipped:hover {
+            transform: rotateY(180deg) translateY(-10px) scale(1.05);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .card-front {
+            background-color: #fffefe;
+            border: 10px solid #fffefe;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-back {
+            background-color: #fffefe;
+            border: 10px solid #fffefe;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card-back-content {
+            text-align: center;
+            color: #333;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* Holographic overlay - covers full card (same as overlay) */
@@ -490,20 +527,33 @@
             }
             const imageUrl = IMAGE_BASE_URL ? `${IMAGE_BASE_URL}${imagePath}` : imagePath;
 
-            // Build card HTML matching overlay exactly
+            // Build card HTML matching overlay exactly with flip functionality
             const rarityColorClass = `rarity-${rarityClass}`;
             cardDiv.innerHTML = `
-                <img class="card-image" src="${imageUrl}" 
-                     alt="${card.card_name}" 
-                     onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect width=%22200%22 height=%22200%22 fill=%22%23ddd%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2224%22>?</text></svg>'">
-                <div class="holographic-overlay"></div>
-                <div class="card-info-overlay">
-                    <div class="card-name ${rarityColorClass}">${card.card_name}</div>
+                <div class="card-front">
+                    <img class="card-image" src="${imageUrl}" 
+                         alt="${card.card_name}" 
+                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect width=%22200%22 height=%22200%22 fill=%22%23ddd%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2224%22>?</text></svg>'">
+                    <div class="holographic-overlay"></div>
+                    <div class="card-info-overlay">
+                        <div class="card-name ${rarityColorClass}">${card.card_name}</div>
+                    </div>
+                    <div class="card-rarity ${rarityColorClass}">${card.rarity}</div>
+                    ${card.is_shiny ? '<div class="card-shiny-badge">✨ Shiny</div>' : ''}
+                    <div class="card-count">×${card.quantity}</div>
                 </div>
-                <div class="card-rarity ${rarityColorClass}">${card.rarity}</div>
-                ${card.is_shiny ? '<div class="card-shiny-badge">✨ Shiny</div>' : ''}
-                <div class="card-count">×${card.quantity}</div>
+                <div class="card-back">
+                    <div class="card-back-content">
+                        <!-- Stats will be displayed here later -->
+                    </div>
+                </div>
             `;
+
+            // Add click handler to flip card
+            cardDiv.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('flipped');
+            });
 
             return cardDiv;
         }
