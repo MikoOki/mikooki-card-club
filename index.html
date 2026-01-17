@@ -232,21 +232,6 @@
             }
         }
 
-        .card.shiny::after {
-            content: '✨';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            z-index: 11;
-            animation: sparkle 1.5s ease-in-out infinite;
-            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8));
-        }
-
-        @keyframes sparkle {
-            0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
-            50% { transform: scale(1.3) rotate(180deg); opacity: 0.8; }
-        }
 
         .card-image {
             width: 100%;
@@ -484,13 +469,33 @@
                 return;
             }
 
+            // Rarity order for sorting
+            const rarityOrder = {
+                'Legendary': 0,
+                'Epic': 1,
+                'Rare': 2,
+                'Uncommon': 3,
+                'Common': 4
+            };
+
             // Display each pack
             for (const [packName, cards] of Object.entries(currentUser.packs)) {
                 const packSection = document.createElement('div');
                 packSection.className = 'pack-section';
 
-                const totalInPack = cards.reduce((sum, card) => sum + card.quantity, 0);
-                const uniqueCards = cards.length;
+                // Sort cards by rarity (Legendary first, then Epic, Rare, Uncommon, Common)
+                const sortedCards = [...cards].sort((a, b) => {
+                    const aRarity = rarityOrder[a.rarity] ?? 999;
+                    const bRarity = rarityOrder[b.rarity] ?? 999;
+                    if (aRarity !== bRarity) {
+                        return aRarity - bRarity;
+                    }
+                    // If same rarity, sort by card name
+                    return a.card_name.localeCompare(b.card_name);
+                });
+
+                const totalInPack = sortedCards.reduce((sum, card) => sum + card.quantity, 0);
+                const uniqueCards = sortedCards.length;
 
                 packSection.innerHTML = `
                     <div class="pack-header">
@@ -502,9 +507,9 @@
 
                 container.appendChild(packSection);
 
-                // Add cards to this pack's grid
+                // Add cards to this pack's grid (now sorted)
                 const grid = packSection.querySelector('.cards-grid');
-                cards.forEach(card => {
+                sortedCards.forEach(card => {
                     const cardElement = createCardElement(card, packName);
                     grid.appendChild(cardElement);
                 });
