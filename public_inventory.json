@@ -202,7 +202,7 @@
     },
     "Tolben": {
       "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/57e51fab-864e-4fe5-89f6-f9cd0810f141-profile_image-300x300.jpeg",
-      "total_cards": 18,
+      "total_cards": 21,
       "packs": {
         "Himbo": [
           {
@@ -223,16 +223,38 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
-            "quantity": 5,
+            "quantity": 6,
             "acquired_at": "2026-01-17T15:06:49.666287",
             "front_image_path": "packs/Himbo/Uncommon/2.png"
+          },
+          {
+            "card_id": 2,
+            "card_name": "Cowboy",
+            "rarity": "Uncommon",
+            "description": "",
+            "stats": {},
+            "is_shiny": true,
+            "quantity": 1,
+            "acquired_at": "2026-01-17T15:32:42.745369",
+            "front_image_path": "packs/Himbo/Uncommon/2.png"
+          },
+          {
+            "card_id": 3,
+            "card_name": "3",
+            "rarity": "Rare",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "quantity": 1,
+            "acquired_at": "2026-01-17T15:32:42.745382",
+            "front_image_path": "packs/Himbo/Rare/3.png"
           }
         ]
       }
     }
   },
   "metadata": {
-    "last_updated": "2026-01-17T15:26:31.102214",
+    "last_updated": "2026-01-17T15:32:50.686574",
     "total_users": 4,
     "version": "1.0"
   }
