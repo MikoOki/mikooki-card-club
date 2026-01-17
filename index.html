@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MikoOki Card Club</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -127,24 +128,21 @@
         }
 
         .card {
-            background: white;
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: all 0.4s;
+            width: 253px;
+            height: 380px;
+            background-color: #fffefe;
+            border-radius: 20px;
+            border: 10px solid #fffefe;
             position: relative;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-        }
-
-        .card {
-            position: relative;
-            overflow: hidden;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
         }
 
         /* Holographic overlay - covers full card (same as overlay) */
@@ -210,78 +208,122 @@
 
         .card-image {
             width: 100%;
-            height: 200px;
-            object-fit: contain;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            margin-bottom: 10px;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-info-overlay {
+            position: absolute;
+            display: flex;
+            bottom: 10px;
+            left: 10px;
+            color: #fe77b8;
+            gap: 3.5px;
+            user-select: none;
+            z-index: 20;
         }
 
         .card-name {
-            font-size: 16px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-
-        .card.shiny .card-name {
-            color: #8b6914;
-        }
-
-        .card-rarity {
-            font-size: 12px;
-            text-align: center;
-            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 4px 8px;
+            font-size: 12px;
+            background: #fffefe;
+            padding: 6px 12px;
+            border-radius: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Rarity colors for card names */
+        .card-name.rarity-common {
+            color: #808080;
+        }
+        .card-name.rarity-uncommon {
+            color: #4CAF50;
+        }
+        .card-name.rarity-rare {
+            color: #2196F3;
+        }
+        .card-name.rarity-epic {
+            color: #9C27B0;
+        }
+        .card-name.rarity-legendary {
+            color: #FF9800;
+        }
+
+        /* Rarity box - vertical text on bottom right, reads bottom to top */
+        .card-rarity {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 6px;
             border-radius: 8px;
-            display: inline-block;
-            width: 100%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 100;
         }
 
-        .card-rarity.common {
-            background: #808080;
-            color: white;
+        /* Rarity box background colors */
+        .card-rarity.rarity-common {
+            background: linear-gradient(135deg, #808080 0%, #606060 100%);
+        }
+        .card-rarity.rarity-uncommon {
+            background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+        }
+        .card-rarity.rarity-rare {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        }
+        .card-rarity.rarity-epic {
+            background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+        }
+        .card-rarity.rarity-legendary {
+            background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
         }
 
-        .card-rarity.uncommon {
-            background: #4CAF50;
+        /* Shiny indicator badge - readable with gold border */
+        .card-shiny-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 9px;
             color: white;
-        }
-
-        .card-rarity.rare {
-            background: #2196F3;
-            color: white;
-        }
-
-        .card-rarity.epic {
-            background: #9C27B0;
-            color: white;
-        }
-
-        .card-rarity.legendary {
-            background: #FF9800;
-            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #FFD700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            z-index: 101;
+            backdrop-filter: blur(2px);
         }
 
         .card-count {
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-            text-align: center;
-            background: rgba(0,0,0,0.05);
-            padding: 8px;
-            border-radius: 8px;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 4px 10px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            z-index: 101;
         }
-
-        .card.common { border: 3px solid #808080; }
-        .card.uncommon { border: 3px solid #4CAF50; }
-        .card.rare { border: 3px solid #2196F3; }
-        .card.epic { border: 3px solid #9C27B0; }
-        .card.legendary { border: 3px solid #FF9800; }
 
         .last-updated {
             text-align: center;
@@ -443,13 +485,18 @@
             }
             const imageUrl = IMAGE_BASE_URL ? `${IMAGE_BASE_URL}${imagePath}` : imagePath;
 
+            // Build card HTML matching overlay exactly
+            const rarityColorClass = `rarity-${rarityClass}`;
             cardDiv.innerHTML = `
                 <img class="card-image" src="${imageUrl}" 
                      alt="${card.card_name}" 
                      onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect width=%22200%22 height=%22200%22 fill=%22%23ddd%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2224%22>?</text></svg>'">
                 <div class="holographic-overlay"></div>
-                <div class="card-name">${card.card_name}</div>
-                <div class="card-rarity ${rarityClass}">${card.rarity}</div>
+                <div class="card-info-overlay">
+                    <div class="card-name ${rarityColorClass}">${card.card_name}</div>
+                </div>
+                <div class="card-rarity ${rarityColorClass}">${card.rarity}</div>
+                ${card.is_shiny ? '<div class="card-shiny-badge">✨ Shiny</div>' : ''}
                 <div class="card-count">×${card.quantity}</div>
             `;
 
