@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCG Card Collection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .controls {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        select {
+            padding: 15px 25px;
+            font-size: 17px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(15px);
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        select option {
+            background: #764ba2;
+            color: white;
+        }
+
+        select:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-5px);
+        }
+
+        .user-info {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 25px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            object-fit: cover;
+        }
+
+        .user-details h2 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .total-cards {
+            font-size: 1.5em;
+            opacity: 0.95;
+        }
+
+        .pack-section {
+            margin-bottom: 50px;
+        }
+
+        .pack-header {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .pack-header h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .pack-stats {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Holographic overlay - covers full card (same as overlay) */
+        .holographic-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 15px;
+            background: linear-gradient(
+                120deg,
+                rgba(255, 255, 255, 0),
+                rgba(255, 254, 227, 0.9),
+                rgba(255, 255, 255, 0),
+                rgba(255, 224, 120, 0.9),
+                rgba(255, 255, 255, 0),
+                rgba(175, 255, 181, 0.9),
+                rgba(255, 255, 255, 0),
+                rgba(255, 254, 227, 0.9),
+                rgba(255, 255, 255, 0),
+                rgba(150, 245, 255, 0.9),
+                rgba(255, 255, 255, 0)
+            );
+            background-size: 500% 500%;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            mix-blend-mode: overlay;
+            filter: blur(2px);
+        }
+
+        .card.shiny .holographic-overlay {
+            animation: rainbowShimmer 10.5s linear infinite;
+            opacity: 1 !important;
+        }
+
+        @keyframes rainbowShimmer {
+            0% {
+                background-position: 100% 100%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        .card.shiny::after {
+            content: '✨';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            z-index: 11;
+            animation: sparkle 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8));
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.3) rotate(180deg); opacity: 0.8; }
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            margin-bottom: 10px;
+        }
+
+        .card-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .card.shiny .card-name {
+            color: #8b6914;
+        }
+
+        .card-rarity {
+            font-size: 12px;
+            text-align: center;
+            margin-bottom: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 8px;
+            border-radius: 8px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .card-rarity.common {
+            background: #808080;
+            color: white;
+        }
+
+        .card-rarity.uncommon {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .card-rarity.rare {
+            background: #2196F3;
+            color: white;
+        }
+
+        .card-rarity.epic {
+            background: #9C27B0;
+            color: white;
+        }
+
+        .card-rarity.legendary {
+            background: #FF9800;
+            color: white;
+        }
+
+        .card-count {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            background: rgba(0,0,0,0.05);
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .card.common { border: 3px solid #808080; }
+        .card.uncommon { border: 3px solid #4CAF50; }
+        .card.rare { border: 3px solid #2196F3; }
+        .card.epic { border: 3px solid #9C27B0; }
+        .card.legendary { border: 3px solid #FF9800; }
+
+        .last-updated {
+            text-align: center;
+            margin-top: 40px;
+            opacity: 0.7;
+            font-size: 14px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.5em;
+        }
+
+        .error {
+            text-align: center;
+            padding: 40px;
+            color: #ff6b6b;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎴 TCG Card Collection</h1>
+
+        <div class="controls">
+            <select id="userSelect">
+                <option value="">Select a user...</option>
+            </select>
+        </div>
+
+        <div class="user-info" id="userInfo" style="display: none;">
+            <img class="user-avatar" id="userAvatar" src="" alt="Avatar">
+            <div class="user-details">
+                <h2 id="username"></h2>
+                <div class="total-cards" id="totalCards">0 cards</div>
+            </div>
+        </div>
+
+        <div id="packsContainer"></div>
+
+        <div class="last-updated" id="lastUpdated"></div>
+    </div>
+
+    <script>
+        let allData = null;
+        let currentUser = null;
+        // Image base URL - GitHub repository for card images
+        const IMAGE_BASE_URL = 'https://raw.githubusercontent.com/MikoOki/tcg-card-images/main/';
+
+        // Load the inventory data
+        async function init() {
+            try {
+                const response = await fetch('public_inventory.json');
+                const data = await response.json();
+                allData = data;
+
+                // Populate user dropdown
+                const userSelect = document.getElementById('userSelect');
+                const users = Object.keys(data.users).sort((a, b) => 
+                    a.toLowerCase().localeCompare(b.toLowerCase())
+                );
+                
+                users.forEach(username => {
+                    const option = document.createElement('option');
+                    option.value = username;
+                    option.textContent = username;
+                    userSelect.appendChild(option);
+                });
+
+                // Show last updated
+                if (data.metadata && data.metadata.last_updated) {
+                    const date = new Date(data.metadata.last_updated);
+                    document.getElementById('lastUpdated').textContent = 
+                        `Last updated: ${date.toLocaleString()}`;
+                }
+
+                // Listen for user selection
+                userSelect.addEventListener('change', loadUserData);
+
+                console.log('Data loaded successfully');
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('packsContainer').innerHTML = 
+                    '<div class="error">Failed to load inventory data. Please try again later.</div>';
+            }
+        }
+
+        function loadUserData() {
+            const username = document.getElementById('userSelect').value;
+            if (!username || !allData) {
+                document.getElementById('userInfo').style.display = 'none';
+                document.getElementById('packsContainer').innerHTML = '';
+                return;
+            }
+
+            currentUser = allData.users[username];
+            
+            // Show user info
+            document.getElementById('userInfo').style.display = 'flex';
+            document.getElementById('userAvatar').src = currentUser.avatar;
+            document.getElementById('username').textContent = username;
+            document.getElementById('totalCards').textContent = `${currentUser.total_cards} cards`;
+
+            // Display cards by pack
+            displayCardsByPack();
+        }
+
+        function displayCardsByPack() {
+            const container = document.getElementById('packsContainer');
+            container.innerHTML = '';
+
+            if (!currentUser || !currentUser.packs || Object.keys(currentUser.packs).length === 0) {
+                container.innerHTML = '<div class="loading">No cards collected yet</div>';
+                return;
+            }
+
+            // Display each pack
+            for (const [packName, cards] of Object.entries(currentUser.packs)) {
+                const packSection = document.createElement('div');
+                packSection.className = 'pack-section';
+
+                const totalInPack = cards.reduce((sum, card) => sum + card.quantity, 0);
+                const uniqueCards = cards.length;
+
+                packSection.innerHTML = `
+                    <div class="pack-header">
+                        <h3>${packName}</h3>
+                        <div class="pack-stats">${uniqueCards} unique cards • ${totalInPack} total</div>
+                    </div>
+                    <div class="cards-grid" id="pack-${packName.replace(/\s+/g, '-')}"></div>
+                `;
+
+                container.appendChild(packSection);
+
+                // Add cards to this pack's grid
+                const grid = packSection.querySelector('.cards-grid');
+                cards.forEach(card => {
+                    const cardElement = createCardElement(card, packName);
+                    grid.appendChild(cardElement);
+                });
+            }
+        }
+
+        function createCardElement(card, packName) {
+            const cardDiv = document.createElement('div');
+            const rarityClass = card.rarity.toLowerCase();
+            const classes = `card ${rarityClass} ${card.is_shiny ? 'shiny' : ''}`;
+            cardDiv.className = classes;
+
+            // Build image path - front_image_path is already relative (e.g., "packs/Himbo/Common/1.png")
+            // If front_image_path is provided in card data, use that, otherwise construct it
+            let imagePath;
+            if (card.front_image_path) {
+                imagePath = card.front_image_path;
+            } else {
+                imagePath = `packs/${packName}/${card.rarity}/${card.card_id}.png`;
+            }
+            const imageUrl = IMAGE_BASE_URL ? `${IMAGE_BASE_URL}${imagePath}` : imagePath;
+
+            cardDiv.innerHTML = `
+                <img class="card-image" src="${imageUrl}" 
+                     alt="${card.card_name}" 
+                     onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect width=%22200%22 height=%22200%22 fill=%22%23ddd%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2224%22>?</text></svg>'">
+                <div class="holographic-overlay"></div>
+                <div class="card-name">${card.card_name}</div>
+                <div class="card-rarity ${rarityClass}">${card.rarity}</div>
+                <div class="card-count">×${card.quantity}</div>
+            `;
+
+            return cardDiv;
+        }
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>
