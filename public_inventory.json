@@ -202,7 +202,7 @@
     },
     "Tolben": {
       "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/57e51fab-864e-4fe5-89f6-f9cd0810f141-profile_image-300x300.jpeg",
-      "total_cards": 15,
+      "total_cards": 18,
       "packs": {
         "Himbo": [
           {
@@ -212,7 +212,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
-            "quantity": 11,
+            "quantity": 13,
             "acquired_at": "2026-01-17T15:03:54.781858",
             "front_image_path": "packs/Himbo/Common/1.png"
           },
@@ -223,7 +223,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
-            "quantity": 4,
+            "quantity": 5,
             "acquired_at": "2026-01-17T15:06:49.666287",
             "front_image_path": "packs/Himbo/Uncommon/2.png"
           }
@@ -232,7 +232,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-01-17T15:24:50.869360",
+    "last_updated": "2026-01-17T15:26:31.102214",
     "total_users": 4,
     "version": "1.0"
   }
