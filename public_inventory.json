@@ -1,0 +1,209 @@
+{
+  "users": {
+    "test": {
+      "avatar": "https://ui-avatars.com/api/?name=test&background=667eea&color=fff&size=128",
+      "total_cards": 87,
+      "packs": {
+        "Himbo": [
+          {
+            "card_id": 1,
+            "card_name": "Hazard",
+            "rarity": "Common",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "quantity": 57,
+            "acquired_at": "2026-01-17T11:26:45.695255",
+            "front_image_path": "packs/Himbo/Common/1.png"
+          },
+          {
+            "card_id": 3,
+            "card_name": "3",
+            "rarity": "Rare",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "quantity": 9,
+            "acquired_at": "2026-01-17T11:26:45.695271",
+            "front_image_path": "packs/Himbo/Rare/3.png"
+          },
+          {
+            "card_id": 2,
+            "card_name": "Cowboy",
+            "rarity": "Uncommon",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "quantity": 17,
+            "acquired_at": "2026-01-17T11:26:45.695275",
+            "front_image_path": "packs/Himbo/Uncommon/2.png"
+          },
+          {
+            "card_id": 1,
+            "card_name": "Hazard",
+            "rarity": "Common",
+            "description": "",
+            "stats": {},
+            "is_shiny": true,
+            "quantity": 2,
+            "acquired_at": "2026-01-17T11:35:57.071660",
+            "front_image_path": "packs/Himbo/Common/1.png"
+          },
+          {
+            "card_id": 2,
+            "card_name": "Cowboy",
+            "rarity": "Uncommon",
+            "description": "",
+            "stats": {},
+            "is_shiny": true,
+            "quantity": 1,
+            "acquired_at": "2026-01-17T11:37:11.224624",
+            "front_image_path": "packs/Himbo/Uncommon/2.png"
+          },
+          {
+            "card_id": 3,
+            "card_name": "3",
+            "rarity": "Rare",
+            "description": "",
+            "stats": {},
+            "is_shiny": true,
+            "quantity": 1,
+            "acquired_at": "2026-01-17T11:38:48.532779",
+            "front_image_path": "packs/Himbo/Rare/3.png"
+          }
+        ]
+      }
+    },
+    "test2": {
+      "avatar": "https://ui-avatars.com/api/?name=test2&background=667eea&color=fff&size=128",
+      "total_cards": 42,
+      "packs": {
+        "Himbo": [
+          {
+            "card_id": 3,
+            "card_name": "3",
+            "rarity": "Rare",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "quantity": 5,
+            "acquired_at": "2026-01-17T11:43:59.684333",
+            "front_image_path": "packs/Himbo/Rare/3.png"
+          },
+          {
+            "card_id": 1,
+            "card_name": "Hazard",
+            "rarity": "Common",
+            "description": "",
+            "stats": {},
+            "is_shiny": true,
+            "quantity": 1,
+            "acquired_at": "2026-01-17T11:43:59.684346",
+            "front_image_path": "packs/Himbo/Common/1.png"
+          },
+          {
+            "card_id": 1,
+            "card_name": "Hazard",
+            "rarity": "Common",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "quantity": 24,
+            "acquired_at": "2026-01-17T11:44:11.770421",
+            "front_image_path": "packs/Himbo/Common/1.png"
+          },
+          {
+            "card_id": 2,
+            "card_name": "Cowboy",
+            "rarity": "Uncommon",
+            "description": "",
+            "stats": {},
+            "is_shiny": true,
+            "quantity": 1,
+            "acquired_at": "2026-01-17T11:44:11.770433",
+            "front_image_path": "packs/Himbo/Uncommon/2.png"
+          },
+          {
+            "card_id": 2,
+            "card_name": "Cowboy",
+            "rarity": "Uncommon",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "quantity": 10,
+            "acquired_at": "2026-01-17T11:44:34.733312",
+            "front_image_path": "packs/Himbo/Uncommon/2.png"
+          },
+          {
+            "card_id": 3,
+            "card_name": "3",
+            "rarity": "Rare",
+            "description": "",
+            "stats": {},
+            "is_shiny": true,
+            "quantity": 1,
+            "acquired_at": "2026-01-17T11:46:18.613569",
+            "front_image_path": "packs/Himbo/Rare/3.png"
+          }
+        ]
+      }
+    },
+    "fred": {
+      "avatar": "https://ui-avatars.com/api/?name=fred&background=667eea&color=fff&size=128",
+      "total_cards": 12,
+      "packs": {
+        "Himbo": [
+          {
+            "card_id": 2,
+            "card_name": "Cowboy",
+            "rarity": "Uncommon",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "quantity": 5,
+            "acquired_at": "2026-01-17T12:13:57.445005",
+            "front_image_path": "packs/Himbo/Uncommon/2.png"
+          },
+          {
+            "card_id": 1,
+            "card_name": "Hazard",
+            "rarity": "Common",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "quantity": 5,
+            "acquired_at": "2026-01-17T12:13:57.445020",
+            "front_image_path": "packs/Himbo/Common/1.png"
+          },
+          {
+            "card_id": 3,
+            "card_name": "3",
+            "rarity": "Rare",
+            "description": "",
+            "stats": {},
+            "is_shiny": true,
+            "quantity": 1,
+            "acquired_at": "2026-01-17T12:14:11.345920",
+            "front_image_path": "packs/Himbo/Rare/3.png"
+          },
+          {
+            "card_id": 3,
+            "card_name": "3",
+            "rarity": "Rare",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "quantity": 1,
+            "acquired_at": "2026-01-17T12:34:16.287633",
+            "front_image_path": "packs/Himbo/Rare/3.png"
+          }
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "last_updated": "2026-01-17T13:55:40.024571",
+    "total_users": 3,
+    "version": "1.0"
+  }
+}
