@@ -75,7 +75,7 @@
       }
     },
     "test2": {
-      "avatar": "https://ui-avatars.com/api/?name=test2&background=667eea&color=fff&size=128",
+      "avatar": "https://static-cdn.jtvnw.net/user-default-pictures-uv/de130ab0-def7-11e9-b668-784f43822e80-profile_image-300x300.png",
       "total_cards": 42,
       "packs": {
         "Himbo": [
@@ -149,7 +149,7 @@
       }
     },
     "fred": {
-      "avatar": "https://ui-avatars.com/api/?name=fred&background=667eea&color=fff&size=128",
+      "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/fred-profile_image-a09b99fef600ca46-300x300.png",
       "total_cards": 12,
       "packs": {
         "Himbo": [
@@ -199,11 +199,30 @@
           }
         ]
       }
+    },
+    "Tolben": {
+      "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/57e51fab-864e-4fe5-89f6-f9cd0810f141-profile_image-300x300.jpeg",
+      "total_cards": 3,
+      "packs": {
+        "Himbo": [
+          {
+            "card_id": 1,
+            "card_name": "Hazard",
+            "rarity": "Common",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "quantity": 3,
+            "acquired_at": "2026-01-17T15:03:54.781858",
+            "front_image_path": "packs/Himbo/Common/1.png"
+          }
+        ]
+      }
     }
   },
   "metadata": {
-    "last_updated": "2026-01-17T13:55:40.024571",
-    "total_users": 3,
+    "last_updated": "2026-01-17T15:04:02.709895",
+    "total_users": 4,
     "version": "1.0"
   }
 }
