@@ -121,10 +121,11 @@
         }
 
         .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: -20px; /* Negative gap for overlap */
             padding: 20px 0;
+            justify-content: flex-start;
         }
 
         .card {
@@ -137,12 +138,16 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
+            margin-right: -20px; /* Overlap with next card */
+            z-index: 1;
         }
 
         .card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            z-index: 100; /* Bring to front on hover */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
         }
 
         /* Holographic overlay - covers full card (same as overlay) */
