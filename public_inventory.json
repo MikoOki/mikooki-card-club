@@ -2,7 +2,7 @@
   "users": {
     "test": {
       "avatar": "https://ui-avatars.com/api/?name=test&background=667eea&color=fff&size=128",
-      "total_cards": 90,
+      "total_cards": 93,
       "packs": {
         "Himbo": [
           {
@@ -12,7 +12,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
-            "quantity": 59,
+            "quantity": 61,
             "acquired_at": "2026-01-17T11:26:45.695255",
             "front_image_path": "packs/Himbo/Common/1.png"
           },
@@ -34,7 +34,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
-            "quantity": 18,
+            "quantity": 19,
             "acquired_at": "2026-01-17T11:26:45.695275",
             "front_image_path": "packs/Himbo/Uncommon/2.png"
           },
@@ -284,7 +284,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-01-22T15:46:29.334416",
+    "last_updated": "2026-01-22T15:46:42.150729",
     "total_users": 5,
     "version": "1.0"
   }
