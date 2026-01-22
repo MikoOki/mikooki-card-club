@@ -251,11 +251,41 @@
           }
         ]
       }
+    },
+    "TEstt": {
+      "avatar": "https://static-cdn.jtvnw.net/user-default-pictures-uv/294c98b5-e34d-42cd-a8f0-140b72fba9b0-profile_image-300x300.png",
+      "total_cards": 3,
+      "packs": {
+        "Himbo": [
+          {
+            "card_id": 1,
+            "card_name": "Hazard",
+            "rarity": "Common",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "quantity": 2,
+            "acquired_at": "2026-01-22T15:44:12.607971",
+            "front_image_path": "packs/Himbo/Common/1.png"
+          },
+          {
+            "card_id": 3,
+            "card_name": "3",
+            "rarity": "Rare",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "quantity": 1,
+            "acquired_at": "2026-01-22T15:44:12.607984",
+            "front_image_path": "packs/Himbo/Rare/3.png"
+          }
+        ]
+      }
     }
   },
   "metadata": {
-    "last_updated": "2026-01-17T15:32:50.686574",
-    "total_users": 4,
+    "last_updated": "2026-01-22T15:44:21.283227",
+    "total_users": 5,
     "version": "1.0"
   }
 }
