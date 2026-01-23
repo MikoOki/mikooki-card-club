@@ -818,6 +818,15 @@
             }
             
             const rarityClassForBack = `rarity-${rarityClass}`;
+            
+            // Build card ID with variant indicator
+            let cardIdDisplay = `Card #${card.card_id}`;
+            if (isSecret) {
+                cardIdDisplay += " [Secret]";
+            } else if (isShiny) {
+                cardIdDisplay += " (Shiny)";
+            }
+            
             const cardBackHTML = `
                 <div class="header-section">
                     <div class="card-title">${card.card_name}</div>
@@ -825,7 +834,7 @@
                 </div>
                 ${description ? `<div class="description">${description}</div>` : ""}
                 ${statsHTML ? `<div class="stats-list">${statsHTML}</div>` : ""}
-                <div class="footer">Pack: ${packName} | Card #${card.card_id}</div>
+                <div class="footer">Pack: ${packName} | ${cardIdDisplay}</div>
             `;
             
             cardDiv.innerHTML = `
