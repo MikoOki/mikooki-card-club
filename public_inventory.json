@@ -2,7 +2,7 @@
   "users": {
     "test": {
       "avatar": "https://ui-avatars.com/api/?name=test&background=667eea&color=fff&size=128",
-      "total_cards": 117,
+      "total_cards": 120,
       "packs": {
         "Himbo": [
           {
@@ -12,7 +12,8 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
-            "quantity": 74,
+            "is_secret": false,
+            "quantity": 77,
             "acquired_at": "2026-01-17T11:26:45.695255",
             "front_image_path": "packs/Himbo/Common/1.png"
           },
@@ -23,6 +24,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
+            "is_secret": false,
             "quantity": 11,
             "acquired_at": "2026-01-17T11:26:45.695271",
             "front_image_path": "packs/Himbo/Rare/3.png"
@@ -34,6 +36,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
+            "is_secret": false,
             "quantity": 27,
             "acquired_at": "2026-01-17T11:26:45.695275",
             "front_image_path": "packs/Himbo/Uncommon/2.png"
@@ -45,6 +48,7 @@
             "description": "",
             "stats": {},
             "is_shiny": true,
+            "is_secret": false,
             "quantity": 3,
             "acquired_at": "2026-01-17T11:35:57.071660",
             "front_image_path": "packs/Himbo/Common/1.png"
@@ -56,6 +60,7 @@
             "description": "",
             "stats": {},
             "is_shiny": true,
+            "is_secret": false,
             "quantity": 1,
             "acquired_at": "2026-01-17T11:37:11.224624",
             "front_image_path": "packs/Himbo/Uncommon/2.png"
@@ -67,6 +72,7 @@
             "description": "",
             "stats": {},
             "is_shiny": true,
+            "is_secret": false,
             "quantity": 1,
             "acquired_at": "2026-01-17T11:38:48.532779",
             "front_image_path": "packs/Himbo/Rare/3.png"
@@ -75,7 +81,7 @@
       }
     },
     "test2": {
-      "avatar": "https://static-cdn.jtvnw.net/user-default-pictures-uv/de130ab0-def7-11e9-b668-784f43822e80-profile_image-300x300.png",
+      "avatar": "https://ui-avatars.com/api/?name=test2&background=667eea&color=fff&size=128",
       "total_cards": 42,
       "packs": {
         "Himbo": [
@@ -86,6 +92,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
+            "is_secret": false,
             "quantity": 5,
             "acquired_at": "2026-01-17T11:43:59.684333",
             "front_image_path": "packs/Himbo/Rare/3.png"
@@ -97,6 +104,7 @@
             "description": "",
             "stats": {},
             "is_shiny": true,
+            "is_secret": false,
             "quantity": 1,
             "acquired_at": "2026-01-17T11:43:59.684346",
             "front_image_path": "packs/Himbo/Common/1.png"
@@ -108,6 +116,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
+            "is_secret": false,
             "quantity": 24,
             "acquired_at": "2026-01-17T11:44:11.770421",
             "front_image_path": "packs/Himbo/Common/1.png"
@@ -119,6 +128,7 @@
             "description": "",
             "stats": {},
             "is_shiny": true,
+            "is_secret": false,
             "quantity": 1,
             "acquired_at": "2026-01-17T11:44:11.770433",
             "front_image_path": "packs/Himbo/Uncommon/2.png"
@@ -130,6 +140,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
+            "is_secret": false,
             "quantity": 10,
             "acquired_at": "2026-01-17T11:44:34.733312",
             "front_image_path": "packs/Himbo/Uncommon/2.png"
@@ -141,6 +152,7 @@
             "description": "",
             "stats": {},
             "is_shiny": true,
+            "is_secret": false,
             "quantity": 1,
             "acquired_at": "2026-01-17T11:46:18.613569",
             "front_image_path": "packs/Himbo/Rare/3.png"
@@ -149,7 +161,7 @@
       }
     },
     "fred": {
-      "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/fred-profile_image-a09b99fef600ca46-300x300.png",
+      "avatar": "https://ui-avatars.com/api/?name=fred&background=667eea&color=fff&size=128",
       "total_cards": 12,
       "packs": {
         "Himbo": [
@@ -160,6 +172,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
+            "is_secret": false,
             "quantity": 5,
             "acquired_at": "2026-01-17T12:13:57.445005",
             "front_image_path": "packs/Himbo/Uncommon/2.png"
@@ -171,6 +184,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
+            "is_secret": false,
             "quantity": 5,
             "acquired_at": "2026-01-17T12:13:57.445020",
             "front_image_path": "packs/Himbo/Common/1.png"
@@ -182,6 +196,7 @@
             "description": "",
             "stats": {},
             "is_shiny": true,
+            "is_secret": false,
             "quantity": 1,
             "acquired_at": "2026-01-17T12:14:11.345920",
             "front_image_path": "packs/Himbo/Rare/3.png"
@@ -193,6 +208,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
+            "is_secret": false,
             "quantity": 1,
             "acquired_at": "2026-01-17T12:34:16.287633",
             "front_image_path": "packs/Himbo/Rare/3.png"
@@ -201,7 +217,7 @@
       }
     },
     "Tolben": {
-      "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/57e51fab-864e-4fe5-89f6-f9cd0810f141-profile_image-300x300.jpeg",
+      "avatar": "https://ui-avatars.com/api/?name=Tolben&background=667eea&color=fff&size=128",
       "total_cards": 21,
       "packs": {
         "Himbo": [
@@ -212,6 +228,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
+            "is_secret": false,
             "quantity": 13,
             "acquired_at": "2026-01-17T15:03:54.781858",
             "front_image_path": "packs/Himbo/Common/1.png"
@@ -223,6 +240,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
+            "is_secret": false,
             "quantity": 6,
             "acquired_at": "2026-01-17T15:06:49.666287",
             "front_image_path": "packs/Himbo/Uncommon/2.png"
@@ -234,6 +252,7 @@
             "description": "",
             "stats": {},
             "is_shiny": true,
+            "is_secret": false,
             "quantity": 1,
             "acquired_at": "2026-01-17T15:32:42.745369",
             "front_image_path": "packs/Himbo/Uncommon/2.png"
@@ -245,6 +264,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
+            "is_secret": false,
             "quantity": 1,
             "acquired_at": "2026-01-17T15:32:42.745382",
             "front_image_path": "packs/Himbo/Rare/3.png"
@@ -253,7 +273,7 @@
       }
     },
     "TEstt": {
-      "avatar": "https://static-cdn.jtvnw.net/user-default-pictures-uv/294c98b5-e34d-42cd-a8f0-140b72fba9b0-profile_image-300x300.png",
+      "avatar": "https://ui-avatars.com/api/?name=TEstt&background=667eea&color=fff&size=128",
       "total_cards": 3,
       "packs": {
         "Himbo": [
@@ -264,6 +284,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
+            "is_secret": false,
             "quantity": 2,
             "acquired_at": "2026-01-22T15:44:12.607971",
             "front_image_path": "packs/Himbo/Common/1.png"
@@ -275,6 +296,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
+            "is_secret": false,
             "quantity": 1,
             "acquired_at": "2026-01-22T15:44:12.607984",
             "front_image_path": "packs/Himbo/Rare/3.png"
@@ -283,7 +305,7 @@
       }
     },
     "test1": {
-      "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/test1-profile_image-5rU4Za5Mp1JxuWg-300x300.png",
+      "avatar": "https://ui-avatars.com/api/?name=test1&background=667eea&color=fff&size=128",
       "total_cards": 3,
       "packs": {
         "Himbo": [
@@ -294,6 +316,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
+            "is_secret": false,
             "quantity": 2,
             "acquired_at": "2026-01-22T15:48:31.158848",
             "front_image_path": "packs/Himbo/Uncommon/2.png"
@@ -305,6 +328,7 @@
             "description": "",
             "stats": {},
             "is_shiny": false,
+            "is_secret": false,
             "quantity": 1,
             "acquired_at": "2026-01-22T15:48:31.158865",
             "front_image_path": "packs/Himbo/Common/1.png"
@@ -313,8 +337,55 @@
       }
     }
   },
+  "discoveries": {},
+  "all_cards": {
+    "Himbo": [
+      {
+        "card_id": 1,
+        "card_name": "Hazard",
+        "rarity": "Common",
+        "description": "",
+        "front_image_path": "packs/Himbo/Common/1.png",
+        "has_secret": true,
+        "secret_image_path": "packs/Himbo/Common/1_secret.png"
+      },
+      {
+        "card_id": 2,
+        "card_name": "Cowboy",
+        "rarity": "Uncommon",
+        "description": "",
+        "front_image_path": "packs/Himbo/Uncommon/2.png",
+        "has_secret": false,
+        "secret_image_path": null
+      },
+      {
+        "card_id": 3,
+        "card_name": "3",
+        "rarity": "Rare",
+        "description": "",
+        "front_image_path": "packs/Himbo/Rare/3.png",
+        "has_secret": false,
+        "secret_image_path": null
+      }
+    ]
+  },
+  "packs": {
+    "Himbo": {
+      "pack_name": "Himbo",
+      "description": "",
+      "pack_body_image_path": "packs/Himbo/pack_body.png",
+      "tear_top_image_path": "packs/Himbo/tear_top.png",
+      "rarities": [
+        "Common",
+        "Uncommon",
+        "Rare",
+        "Epic",
+        "Legendary"
+      ]
+    }
+  },
   "metadata": {
-    "last_updated": "2026-01-22T16:26:05.316220",
+    "last_updated": "2026-01-23T12:52:14.302137",
     "total_users": 6,
     "version": "1.0"
   }

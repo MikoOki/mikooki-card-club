@@ -501,8 +501,21 @@
             try {
                 // Load inventory data
                 const response = await fetch('public_inventory.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 allData = await response.json();
                 metadata = allData.metadata || {};
+                
+                // Check if required data exists
+                if (!allData.packs || Object.keys(allData.packs).length === 0) {
+                    console.warn('No packs data found in JSON. The export may need to be regenerated.');
+                    document.getElementById('packSelectionView').style.display = 'block';
+                    document.getElementById('packContainer').style.display = 'none';
+                    document.getElementById('packsGrid').innerHTML = 
+                        '<div class="error" style="grid-column: 1 / -1; text-align: center; padding: 40px;">Pack data not available. The inventory export needs to be regenerated with the latest code.</div>';
+                    return;
+                }
                 
                 // If pack is specified in URL, show that pack's cards
                 // Otherwise, show pack selection
@@ -513,8 +526,10 @@
                 }
             } catch (error) {
                 console.error('Error loading data:', error);
-                document.getElementById('packContainer').innerHTML = 
-                    '<div class="error">Failed to load pack data. Please try again later.</div>';
+                document.getElementById('packSelectionView').style.display = 'block';
+                document.getElementById('packContainer').style.display = 'none';
+                document.getElementById('packsGrid').innerHTML = 
+                    '<div class="error" style="grid-column: 1 / -1; text-align: center; padding: 40px;">Failed to load pack data. Please try again later.<br><br>Error: ' + error.message + '</div>';
             }
         }
 
@@ -524,9 +539,15 @@
             
             const packs = allData.packs || {};
             const packsGrid = document.getElementById('packsGrid');
-            packsGrid.innerHTML = '';
             
             const packNames = Object.keys(packs).sort();
+            
+            if (packNames.length === 0) {
+                packsGrid.innerHTML = '<div class="error" style="grid-column: 1 / -1; text-align: center; padding: 40px;">No pack data available. Please regenerate the inventory export.</div>';
+                return;
+            }
+            
+            packsGrid.innerHTML = '';
             
             packNames.forEach(packNameItem => {
                 const pack = packs[packNameItem];
