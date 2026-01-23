@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Back Stat Examples</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .example-card {
+            width: 253px;
+            height: 380px;
+            position: relative;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            transition: transform 0.6s;
+        }
+
+        .example-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 10px solid #fffefe;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-front-text {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .card-back {
+            background-color: #fffefe;
+            border: 10px solid #fffefe;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transform: rotateY(180deg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .example-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Example 1: Battle Stats Style */
+        .battle-stats {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+        }
+
+        .battle-stats .stat-header {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ffd700;
+        }
+
+        .battle-stats .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .battle-stats .stat-label {
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        .battle-stats .stat-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .battle-stats .rarity-badge {
+            text-align: center;
+            margin-top: auto;
+            padding: 8px;
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        /* Example 2: Collection Info Style */
+        .collection-info {
+            background: linear-gradient(180deg, #f5f5f5 0%, #e8e8e8 100%);
+            color: #333;
+        }
+
+        .collection-info .card-name-large {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            color: #764ba2;
+        }
+
+        .collection-info .info-section {
+            margin: 12px 0;
+            padding: 10px;
+            background: rgba(118, 75, 162, 0.1);
+            border-radius: 8px;
+        }
+
+        .collection-info .info-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .collection-info .info-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .collection-info .card-number {
+            text-align: center;
+            margin-top: auto;
+            font-size: 11px;
+            color: #999;
+        }
+
+        /* Example 3: Minimalist Stats */
+        .minimalist-stats {
+            background: white;
+            color: #333;
+        }
+
+        .minimalist-stats .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .minimalist-stats .stat-box {
+            text-align: center;
+            padding: 12px;
+            background: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .minimalist-stats .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #764ba2;
+            margin-bottom: 4px;
+        }
+
+        .minimalist-stats .stat-name {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        .minimalist-stats .card-id {
+            text-align: center;
+            margin-top: auto;
+            font-size: 10px;
+            color: #ccc;
+        }
+
+        /* Example 4: Detailed Card Info */
+        .detailed-info {
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+        }
+
+        .detailed-info .header-section {
+            text-align: center;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .detailed-info .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .detailed-info .rarity-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        .detailed-info .description {
+            font-size: 11px;
+            line-height: 1.4;
+            color: #ccc;
+            margin: 15px 0;
+            font-style: italic;
+        }
+
+        .detailed-info .stats-list {
+            margin-top: 15px;
+        }
+
+        .detailed-info .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 12px;
+        }
+
+        .detailed-info .footer {
+            margin-top: auto;
+            text-align: center;
+            font-size: 9px;
+            color: #999;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Example 5: Modern Card Style */
+        .modern-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .modern-card .top-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modern-card .card-name-modern {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .modern-card .rarity-modern {
+            font-size: 10px;
+            padding: 4px 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        .modern-card .stats-modern {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .modern-card .stat-modern {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modern-card .stat-icon {
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .modern-card .stat-content {
+            flex: 1;
+        }
+
+        .modern-card .stat-label-modern {
+            font-size: 10px;
+            opacity: 0.8;
+            margin-bottom: 2px;
+        }
+
+        .modern-card .stat-value-modern {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .modern-card .footer-modern {
+            margin-top: auto;
+            text-align: center;
+            font-size: 9px;
+            opacity: 0.6;
+        }
+
+        /* Example 6: Trading Card Style */
+        .trading-card {
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        .trading-card .banner {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            margin: -20px -20px 15px -20px;
+        }
+
+        .trading-card .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .trading-card .card-name-trading {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #764ba2;
+        }
+
+        .trading-card .attributes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .trading-card .attribute {
+            text-align: center;
+            padding: 8px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .trading-card .attribute-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .trading-card .attribute-label {
+            font-size: 9px;
+            color: #666;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .trading-card .card-number-trading {
+            text-align: center;
+            margin-top: auto;
+            font-size: 10px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎴 Card Back Stat Design Examples</h1>
+        <p style="text-align: center; margin-bottom: 30px; font-size: 1.1em; opacity: 0.9;">
+            Click any card to see the back design
+        </p>
+
+        <div class="examples-grid">
+            <!-- Example 1: Battle Stats -->
+            <div>
+                <div class="example-title">Battle Stats Style</div>
+                <div class="example-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-front">
+                        <div class="card-front-text">Click to flip</div>
+                    </div>
+                    <div class="card-back battle-stats">
+                        <div class="stat-header">Card Stats</div>
+                        <div class="stat-row">
+                            <span class="stat-label">⚔️ Attack</span>
+                            <span class="stat-value">85</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">🛡️ Defense</span>
+                            <span class="stat-value">60</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">⚡ Speed</span>
+                            <span class="stat-value">75</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">❤️ Health</span>
+                            <span class="stat-value">120</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">🎯 Accuracy</span>
+                            <span class="stat-value">90%</span>
+                        </div>
+                        <div class="rarity-badge">Rare</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 2: Collection Info -->
+            <div>
+                <div class="example-title">Collection Info Style</div>
+                <div class="example-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-front">
+                        <div class="card-front-text">Click to flip</div>
+                    </div>
+                    <div class="card-back collection-info">
+                        <div class="card-name-large">Hazard</div>
+                        <div class="info-section">
+                            <div class="info-label">Pack</div>
+                            <div class="info-value">Himbo</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Rarity</div>
+                            <div class="info-value">Common</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Owned</div>
+                            <div class="info-value">×3</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">First Discovered</div>
+                            <div class="info-value">Jan 17, 2026</div>
+                        </div>
+                        <div class="card-number">#001/150</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 3: Minimalist Stats -->
+            <div>
+                <div class="example-title">Minimalist Style</div>
+                <div class="example-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-front">
+                        <div class="card-front-text">Click to flip</div>
+                    </div>
+                    <div class="card-back minimalist-stats">
+                        <div style="text-align: center; font-size: 16px; font-weight: bold; margin-bottom: 20px; color: #764ba2;">
+                            Hazard
+                        </div>
+                        <div class="stat-grid">
+                            <div class="stat-box">
+                                <div class="stat-number">85</div>
+                                <div class="stat-name">Power</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">60</div>
+                                <div class="stat-name">Defense</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">75</div>
+                                <div class="stat-name">Speed</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">120</div>
+                                <div class="stat-name">Health</div>
+                            </div>
+                        </div>
+                        <div class="card-id">HIMBO-001</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 4: Detailed Card Info -->
+            <div>
+                <div class="example-title">Detailed Info Style</div>
+                <div class="example-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-front">
+                        <div class="card-front-text">Click to flip</div>
+                    </div>
+                    <div class="card-back detailed-info">
+                        <div class="header-section">
+                            <div class="card-title">Hazard</div>
+                            <div class="rarity-tag">Common</div>
+                        </div>
+                        <div class="description">
+                            "A mysterious character with unknown origins. Known for their unpredictable nature."
+                        </div>
+                        <div class="stats-list">
+                            <div class="stat-item">
+                                <span>⚔️ Attack:</span>
+                                <span style="font-weight: bold;">85</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>🛡️ Defense:</span>
+                                <span style="font-weight: bold;">60</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>⚡ Speed:</span>
+                                <span style="font-weight: bold;">75</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>❤️ Health:</span>
+                                <span style="font-weight: bold;">120</span>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            Pack: Himbo | Card #001
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 5: Modern Card Style -->
+            <div>
+                <div class="example-title">Modern Style</div>
+                <div class="example-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-front">
+                        <div class="card-front-text">Click to flip</div>
+                    </div>
+                    <div class="card-back modern-card">
+                        <div class="top-section">
+                            <div class="card-name-modern">Hazard</div>
+                            <div class="rarity-modern">Common</div>
+                        </div>
+                        <div class="stats-modern">
+                            <div class="stat-modern">
+                                <div class="stat-icon">⚔️</div>
+                                <div class="stat-content">
+                                    <div class="stat-label-modern">Attack</div>
+                                    <div class="stat-value-modern">85</div>
+                                </div>
+                            </div>
+                            <div class="stat-modern">
+                                <div class="stat-icon">🛡️</div>
+                                <div class="stat-content">
+                                    <div class="stat-label-modern">Defense</div>
+                                    <div class="stat-value-modern">60</div>
+                                </div>
+                            </div>
+                            <div class="stat-modern">
+                                <div class="stat-icon">⚡</div>
+                                <div class="stat-content">
+                                    <div class="stat-label-modern">Speed</div>
+                                    <div class="stat-value-modern">75</div>
+                                </div>
+                            </div>
+                            <div class="stat-modern">
+                                <div class="stat-icon">❤️</div>
+                                <div class="stat-content">
+                                    <div class="stat-label-modern">Health</div>
+                                    <div class="stat-value-modern">120</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer-modern">Himbo Pack • #001</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 6: Trading Card Style -->
+            <div>
+                <div class="example-title">Trading Card Style</div>
+                <div class="example-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-front">
+                        <div class="card-front-text">Click to flip</div>
+                    </div>
+                    <div class="card-back trading-card">
+                        <div class="banner">HIMBO PACK</div>
+                        <div class="content-area">
+                            <div class="card-name-trading">Hazard</div>
+                            <div class="attributes">
+                                <div class="attribute">
+                                    <div class="attribute-value">85</div>
+                                    <div class="attribute-label">Attack</div>
+                                </div>
+                                <div class="attribute">
+                                    <div class="attribute-value">60</div>
+                                    <div class="attribute-label">Defense</div>
+                                </div>
+                                <div class="attribute">
+                                    <div class="attribute-value">75</div>
+                                    <div class="attribute-label">Speed</div>
+                                </div>
+                                <div class="attribute">
+                                    <div class="attribute-value">120</div>
+                                    <div class="attribute-label">Health</div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px; background: #f0f0f0; border-radius: 6px; font-size: 10px; color: #666; text-align: center; margin-top: 10px;">
+                                <strong>Rarity:</strong> Common
+                            </div>
+                        </div>
+                        <div class="card-number-trading">001/150</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding: 20px; background: rgba(255, 255, 255, 0.1); border-radius: 15px; backdrop-filter: blur(10px);">
+            <h2 style="margin-bottom: 15px;">Design Notes</h2>
+            <p style="line-height: 1.8; max-width: 800px; margin: 0 auto;">
+                These examples show different approaches to displaying card information on the back. 
+                You can mix and match elements from different styles, or create a custom design that fits your theme. 
+                The stats can include any data you have available: attack/defense values, collection info, discovery dates, 
+                pack information, or custom attributes. Choose the style that best matches your card game's aesthetic!
+            </p>
+        </div>
+    </div>
+</body>
+</html>

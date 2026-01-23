@@ -9,8 +9,13 @@
             "card_id": 1,
             "card_name": "Hazard",
             "rarity": "Common",
-            "description": "",
-            "stats": {},
+            "description": "Woof Woof, This hot Scottish man.",
+            "stats": {
+              "Heart": {
+                "value": "Large and soft",
+                "icon": ""
+              }
+            },
             "is_shiny": false,
             "is_secret": false,
             "quantity": 107,
@@ -45,8 +50,13 @@
             "card_id": 1,
             "card_name": "Hazard",
             "rarity": "Common",
-            "description": "",
-            "stats": {},
+            "description": "Woof Woof, This hot Scottish man.",
+            "stats": {
+              "Heart": {
+                "value": "Large and soft",
+                "icon": ""
+              }
+            },
             "is_shiny": true,
             "is_secret": false,
             "quantity": 3,
@@ -81,8 +91,13 @@
             "card_id": 1,
             "card_name": "Hazard",
             "rarity": "Common",
-            "description": "",
-            "stats": {},
+            "description": "Woof Woof, This hot Scottish man.",
+            "stats": {
+              "Heart": {
+                "value": "Large and soft",
+                "icon": ""
+              }
+            },
             "is_shiny": false,
             "is_secret": true,
             "quantity": 1,
@@ -113,8 +128,13 @@
             "card_id": 1,
             "card_name": "Hazard",
             "rarity": "Common",
-            "description": "",
-            "stats": {},
+            "description": "Woof Woof, This hot Scottish man.",
+            "stats": {
+              "Heart": {
+                "value": "Large and soft",
+                "icon": ""
+              }
+            },
             "is_shiny": true,
             "is_secret": false,
             "quantity": 1,
@@ -125,8 +145,13 @@
             "card_id": 1,
             "card_name": "Hazard",
             "rarity": "Common",
-            "description": "",
-            "stats": {},
+            "description": "Woof Woof, This hot Scottish man.",
+            "stats": {
+              "Heart": {
+                "value": "Large and soft",
+                "icon": ""
+              }
+            },
             "is_shiny": false,
             "is_secret": false,
             "quantity": 24,
@@ -193,8 +218,13 @@
             "card_id": 1,
             "card_name": "Hazard",
             "rarity": "Common",
-            "description": "",
-            "stats": {},
+            "description": "Woof Woof, This hot Scottish man.",
+            "stats": {
+              "Heart": {
+                "value": "Large and soft",
+                "icon": ""
+              }
+            },
             "is_shiny": false,
             "is_secret": false,
             "quantity": 5,
@@ -237,8 +267,13 @@
             "card_id": 1,
             "card_name": "Hazard",
             "rarity": "Common",
-            "description": "",
-            "stats": {},
+            "description": "Woof Woof, This hot Scottish man.",
+            "stats": {
+              "Heart": {
+                "value": "Large and soft",
+                "icon": ""
+              }
+            },
             "is_shiny": false,
             "is_secret": false,
             "quantity": 13,
@@ -293,8 +328,13 @@
             "card_id": 1,
             "card_name": "Hazard",
             "rarity": "Common",
-            "description": "",
-            "stats": {},
+            "description": "Woof Woof, This hot Scottish man.",
+            "stats": {
+              "Heart": {
+                "value": "Large and soft",
+                "icon": ""
+              }
+            },
             "is_shiny": false,
             "is_secret": false,
             "quantity": 2,
@@ -337,8 +377,13 @@
             "card_id": 1,
             "card_name": "Hazard",
             "rarity": "Common",
-            "description": "",
-            "stats": {},
+            "description": "Woof Woof, This hot Scottish man.",
+            "stats": {
+              "Heart": {
+                "value": "Large and soft",
+                "icon": ""
+              }
+            },
             "is_shiny": false,
             "is_secret": false,
             "quantity": 1,
@@ -381,7 +426,7 @@
         "card_id": 1,
         "card_name": "Hazard",
         "rarity": "Common",
-        "description": "",
+        "description": "Woof Woof, This hot Scottish man.",
         "front_image_path": "packs/Himbo/Common/1.png",
         "has_secret": true,
         "secret_image_path": "packs/Himbo/Common/1_secret.png"
@@ -423,7 +468,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-01-23T13:46:03.244695",
+    "last_updated": "2026-01-23T23:41:09.397017",
     "total_users": 6,
     "version": "1.0"
   }

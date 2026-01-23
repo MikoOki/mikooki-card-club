@@ -198,6 +198,82 @@
             font-family: 'Montserrat', sans-serif;
         }
 
+        /* Detailed Info Style for card back */
+        .card-back.detailed-info {
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-back.detailed-info .header-section {
+            text-align: center;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card-back.detailed-info .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .card-back.detailed-info .rarity-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        .card-back.detailed-info .description {
+            font-size: 11px;
+            line-height: 1.4;
+            color: #ccc;
+            margin: 15px 0;
+            font-style: italic;
+            text-align: left;
+        }
+
+        .card-back.detailed-info .stats-list {
+            margin-top: 15px;
+            flex: 1;
+        }
+
+        .card-back.detailed-info .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            font-size: 12px;
+        }
+
+        .card-back.detailed-info .stat-item .stat-icon {
+            margin-right: 8px;
+            font-size: 14px;
+        }
+
+        .card-back.detailed-info .stat-item .stat-label {
+            flex: 1;
+            text-align: left;
+        }
+
+        .card-back.detailed-info .stat-item .stat-value {
+            font-weight: bold;
+        }
+
+        .card-back.detailed-info .footer {
+            margin-top: auto;
+            text-align: center;
+            font-size: 9px;
+            color: #999;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
         /* Holographic overlay - covers full card (same as overlay) */
         .holographic-overlay {
             position: absolute;
@@ -673,6 +749,48 @@
                 ? '<div class="card-secret-badge">🔒 SECRET</div>' 
                 : (isShiny ? '<div class="card-shiny-badge">✨ Shiny</div>' : '');
             
+            // Build card back content with Detailed Info Style
+            const description = card.description || "";
+            const stats = card.stats || {};
+            
+            // Build stats HTML
+            let statsHTML = "";
+            if (Object.keys(stats).length > 0) {
+                for (const [statName, statData] of Object.entries(stats)) {
+                    // Handle both old format (string value) and new format (dict with value and icon)
+                    let icon = "";
+                    let value = "";
+                    
+                    if (typeof statData === "object" && statData !== null) {
+                        icon = statData.icon || "";
+                        value = statData.value || "";
+                    } else {
+                        // Old format: just a string value
+                        value = statData;
+                    }
+                    
+                    if (value) {
+                        statsHTML += `
+                            <div class="stat-item">
+                                <span class="stat-icon">${icon || "•"}</span>
+                                <span class="stat-label">${statName}:</span>
+                                <span class="stat-value">${value}</span>
+                            </div>
+                        `;
+                    }
+                }
+            }
+            
+            const cardBackHTML = `
+                <div class="header-section">
+                    <div class="card-title">${card.card_name}</div>
+                    <div class="rarity-tag">${card.rarity}</div>
+                </div>
+                ${description ? `<div class="description">${description}</div>` : ""}
+                ${statsHTML ? `<div class="stats-list">${statsHTML}</div>` : ""}
+                <div class="footer">Pack: ${packName} | Card #${card.card_id}</div>
+            `;
+            
             cardDiv.innerHTML = `
                 <div class="card-front">
                     <img class="card-image" src="${imageUrl}" 
@@ -686,9 +804,9 @@
                     ${badge}
                     <div class="card-count">×${card.quantity}</div>
                 </div>
-                <div class="card-back">
+                <div class="card-back detailed-info">
                     <div class="card-back-content">
-                        <!-- Stats will be displayed here later -->
+                        ${cardBackHTML}
                     </div>
                 </div>
             `;
