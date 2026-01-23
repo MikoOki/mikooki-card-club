@@ -18,6 +18,25 @@
             min-height: 100vh;
             padding: 20px;
             color: white;
+            position: relative;
+        }
+
+        body.pack-background {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        body.pack-background::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 100%);
+            z-index: -1;
         }
 
         .container {
@@ -182,6 +201,22 @@
             text-align: center;
         }
 
+        .card-section {
+            margin-bottom: 40px;
+        }
+
+        .card-section-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
         .pack-header h2 {
             font-size: 2.5em;
             margin-bottom: 10px;
@@ -230,6 +265,7 @@
             align-items: center;
             justify-content: center;
             border: 10px solid rgba(255, 255, 255, 0.3);
+            position: relative;
         }
 
         .card-display.undiscovered::before {
@@ -238,6 +274,24 @@
             color: rgba(255, 255, 255, 0.5);
             font-weight: bold;
             text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            z-index: 1;
+        }
+
+        /* Ensure undiscovered styling overrides secret styling */
+        .card-display.undiscovered.secret {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            border: 10px solid rgba(255, 255, 255, 0.3) !important;
+        }
+
+        .card-display.undiscovered.secret::before {
+            content: '?' !important;
+            font-size: 8em;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            z-index: 10;
         }
 
         .card-image {
@@ -661,18 +715,38 @@
                 'Common': 4
             };
 
-            packCards.sort((a, b) => {
+            // Separate cards into sections: Secrets, Shinies, Normal
+            const secretCards = packCards.filter(c => c.is_secret);
+            const shinyCards = packCards.filter(c => c.is_shiny && !c.is_secret);
+            const normalCards = packCards.filter(c => !c.is_shiny && !c.is_secret);
+
+            // Sort each section by rarity
+            const sortByRarity = (a, b) => {
                 const aRarity = rarityOrder[a.rarity] ?? 999;
                 const bRarity = rarityOrder[b.rarity] ?? 999;
                 if (aRarity !== bRarity) {
                     return aRarity - bRarity;
                 }
                 return a.card_id - b.card_id;
-            });
+            };
+
+            secretCards.sort(sortByRarity);
+            shinyCards.sort(sortByRarity);
+            normalCards.sort(sortByRarity);
 
             // Count discovered vs total
             const discoveredCount = packCards.filter(c => c.discovered).length;
             const totalCount = packCards.length;
+
+            // Get pack background image if available
+            const packs = allData.packs || {};
+            const pack = packs[packName] || {};
+            const packBgPath = pack.pack_discovery_bg_path;
+            if (packBgPath) {
+                const packBgUrl = IMAGE_BASE_URL ? `${IMAGE_BASE_URL}${packBgPath}` : packBgPath;
+                document.body.style.backgroundImage = `url(${packBgUrl})`;
+                document.body.classList.add('pack-background');
+            }
 
             const backButton = document.createElement('button');
             backButton.className = 'back-link';
@@ -687,16 +761,51 @@
                         ${discoveredCount} / ${totalCount} cards discovered
                     </div>
                 </div>
-                <div class="cards-grid" id="cardsGrid"></div>
+                <div id="cardsContainer"></div>
             `;
             
             container.insertBefore(backButton, container.firstChild);
 
-            const grid = document.getElementById('cardsGrid');
-            packCards.forEach(card => {
-                const cardElement = createCardElement(card, packName);
-                grid.appendChild(cardElement);
-            });
+            const cardsContainer = document.getElementById('cardsContainer');
+            
+            // Add Secret Cards section
+            if (secretCards.length > 0) {
+                const secretSection = document.createElement('div');
+                secretSection.className = 'card-section';
+                secretSection.innerHTML = `<div class="card-section-title">🔒 Secret Variants</div><div class="cards-grid" id="secretGrid"></div>`;
+                cardsContainer.appendChild(secretSection);
+                const secretGrid = secretSection.querySelector('#secretGrid');
+                secretCards.forEach(card => {
+                    const cardElement = createCardElement(card, packName);
+                    secretGrid.appendChild(cardElement);
+                });
+            }
+
+            // Add Shiny Cards section
+            if (shinyCards.length > 0) {
+                const shinySection = document.createElement('div');
+                shinySection.className = 'card-section';
+                shinySection.innerHTML = `<div class="card-section-title">✨ Shiny Variants</div><div class="cards-grid" id="shinyGrid"></div>`;
+                cardsContainer.appendChild(shinySection);
+                const shinyGrid = shinySection.querySelector('#shinyGrid');
+                shinyCards.forEach(card => {
+                    const cardElement = createCardElement(card, packName);
+                    shinyGrid.appendChild(cardElement);
+                });
+            }
+
+            // Add Normal Cards section
+            if (normalCards.length > 0) {
+                const normalSection = document.createElement('div');
+                normalSection.className = 'card-section';
+                normalSection.innerHTML = `<div class="card-section-title">📦 Normal Cards</div><div class="cards-grid" id="normalGrid"></div>`;
+                cardsContainer.appendChild(normalSection);
+                const normalGrid = normalSection.querySelector('#normalGrid');
+                normalCards.forEach(card => {
+                    const cardElement = createCardElement(card, packName);
+                    normalGrid.appendChild(cardElement);
+                });
+            }
         }
 
         function getAllPackCards(packName) {
@@ -786,18 +895,21 @@
                 ? `First discovered by: ${card.discovery.username} on ${formatDate(card.discovery.discovered_at)}`
                 : 'Not yet discovered';
 
+            // For undiscovered cards, always show "?" - even for secrets
+            const cardContent = isDiscovered 
+                ? `<img class="card-image" src="${imageUrl}" alt="${card.card_name}" 
+                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect width=%22200%22 height=%22200%22 fill=%22%23ddd%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2224%22>?</text></svg>'">
+                    <div class="holographic-overlay"></div>
+                    <div class="card-info-overlay">
+                        <div class="card-name ${rarityColorClass}">${card.card_name}</div>
+                    </div>
+                    <div class="card-rarity ${rarityColorClass}">${card.rarity}</div>
+                    ${badge}`
+                : ''; // Undiscovered cards show "?" via CSS ::before
+
             slot.innerHTML = `
                 <div class="${classes}">
-                    ${isDiscovered ? `<img class="card-image" src="${imageUrl}" alt="${card.card_name}" 
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect width=%22200%22 height=%22200%22 fill=%22%23ddd%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2224%22>?</text></svg>'">` : ''}
-                    <div class="holographic-overlay"></div>
-                    ${isDiscovered ? `
-                        <div class="card-info-overlay">
-                            <div class="card-name ${rarityColorClass}">${card.card_name}</div>
-                        </div>
-                        <div class="card-rarity ${rarityColorClass}">${card.rarity}</div>
-                        ${badge}
-                    ` : ''}
+                    ${cardContent}
                 </div>
                 <div class="discovery-tooltip">${tooltipText}</div>
             `;
