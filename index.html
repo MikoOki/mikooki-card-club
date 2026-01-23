@@ -198,9 +198,9 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* Detailed Info Style for card back */
+        /* Detailed Info Style for card back - more vibrant colors */
         .card-back.detailed-info {
-            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            background: linear-gradient(180deg, #1a2332 0%, #2d3748 100%);
             color: white;
             padding: 20px;
             display: flex;
@@ -209,33 +209,62 @@
 
         .card-back.detailed-info .header-section {
             text-align: center;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
             padding-bottom: 10px;
             margin-bottom: 15px;
         }
 
         .card-back.detailed-info .card-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            color: #FFD700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .card-back.detailed-info .rarity-tag {
             display: inline-block;
-            padding: 4px 12px;
-            background: rgba(255, 215, 0, 0.3);
+            padding: 5px 14px;
             border-radius: 12px;
             font-size: 10px;
+            font-weight: 700;
             text-transform: uppercase;
+            color: white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        /* Rarity badge colors matching front card */
+        .card-back.detailed-info .rarity-tag.rarity-common {
+            background: linear-gradient(135deg, #808080 0%, #606060 100%);
+        }
+        .card-back.detailed-info .rarity-tag.rarity-uncommon {
+            background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+        }
+        .card-back.detailed-info .rarity-tag.rarity-rare {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        }
+        .card-back.detailed-info .rarity-tag.rarity-epic {
+            background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+        }
+        .card-back.detailed-info .rarity-tag.rarity-legendary {
+            background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+        }
+        .card-back.detailed-info .rarity-tag.rarity-really-rare {
+            background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
         }
 
         .card-back.detailed-info .description {
-            font-size: 11px;
-            line-height: 1.4;
-            color: #ccc;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #E0E0E0;
             margin: 15px 0;
             font-style: italic;
             text-align: left;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid rgba(255, 255, 255, 0.2);
         }
 
         .card-back.detailed-info .stats-list {
@@ -247,31 +276,38 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 6px 0;
-            font-size: 12px;
+            padding: 8px 0;
+            font-size: 13px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-back.detailed-info .stat-item:last-child {
+            border-bottom: none;
         }
 
         .card-back.detailed-info .stat-item .stat-icon {
-            margin-right: 8px;
-            font-size: 14px;
+            margin-right: 10px;
+            font-size: 16px;
         }
 
         .card-back.detailed-info .stat-item .stat-label {
             flex: 1;
             text-align: left;
+            color: #B0BEC5;
         }
 
         .card-back.detailed-info .stat-item .stat-value {
             font-weight: bold;
+            color: #FFD700;
         }
 
         .card-back.detailed-info .footer {
             margin-top: auto;
             text-align: center;
-            font-size: 9px;
-            color: #999;
-            padding-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 10px;
+            color: #90A4AE;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         /* Holographic overlay - covers full card (same as overlay) */
@@ -781,10 +817,11 @@
                 }
             }
             
+            const rarityClassForBack = `rarity-${rarityClass}`;
             const cardBackHTML = `
                 <div class="header-section">
                     <div class="card-title">${card.card_name}</div>
-                    <div class="rarity-tag">${card.rarity}</div>
+                    <div class="rarity-tag ${rarityClassForBack}">${card.rarity}</div>
                 </div>
                 ${description ? `<div class="description">${description}</div>` : ""}
                 ${statsHTML ? `<div class="stats-list">${statsHTML}</div>` : ""}
