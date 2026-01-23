@@ -2,7 +2,7 @@
   "users": {
     "test": {
       "avatar": "https://ui-avatars.com/api/?name=test&background=667eea&color=fff&size=128",
-      "total_cards": 165,
+      "total_cards": 168,
       "packs": {
         "Himbo": [
           {
@@ -13,7 +13,7 @@
             "stats": {},
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 105,
+            "quantity": 107,
             "acquired_at": "2026-01-17T11:26:45.695255",
             "front_image_path": "packs/Himbo/Common/1.png"
           },
@@ -76,6 +76,18 @@
             "quantity": 1,
             "acquired_at": "2026-01-17T11:38:48.532779",
             "front_image_path": "packs/Himbo/Rare/3.png"
+          },
+          {
+            "card_id": 1,
+            "card_name": "Hazard",
+            "rarity": "Common",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "is_secret": true,
+            "quantity": 1,
+            "acquired_at": "2026-01-23T13:45:53.911961",
+            "front_image_path": "packs/Himbo/Common/1_secret.png"
           }
         ]
       }
@@ -349,6 +361,10 @@
         "normal": {
           "username": "test",
           "discovered_at": "2026-01-23T13:03:44.853346"
+        },
+        "secret": {
+          "username": "test",
+          "discovered_at": "2026-01-23T13:45:53.911961"
         }
       },
       "3": {
@@ -407,7 +423,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-01-23T13:45:53.382090",
+    "last_updated": "2026-01-23T13:46:03.244695",
     "total_users": 6,
     "version": "1.0"
   }
