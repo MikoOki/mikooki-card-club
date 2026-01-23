@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pack Discovery - MikoOki Card Club</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .pack-selector {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .pack-selector select {
+            width: 100%;
+            padding: 15px 25px;
+            font-size: 17px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(15px);
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .pack-selector select option {
+            background: #764ba2;
+            color: white;
+        }
+
+        .packs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .pack-item {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pack-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+        }
+
+        .pack-image-wrapper {
+            width: 100%;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .pack-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 20px;
+        }
+
+        .pack-tear-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 20px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .pack-name {
+            padding: 20px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 700;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .view-cards-btn {
+            display: none;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .pack-item:hover .view-cards-btn {
+            display: block;
+        }
+
+        .view-cards-btn:hover {
+            background: white;
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .pack-header {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+
+        .pack-header h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .pack-stats {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        .card-slot {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 253 / 380;
+            cursor: pointer;
+        }
+
+        .card-display {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: #fffefe;
+            border: 10px solid #fffefe;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-display:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+        }
+
+        .card-display.undiscovered {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 10px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .card-display.undiscovered::before {
+            content: '?';
+            font-size: 8em;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-info-overlay {
+            position: absolute;
+            display: flex;
+            bottom: 10px;
+            left: 10px;
+            color: #fe77b8;
+            gap: 3.5px;
+            user-select: none;
+            z-index: 20;
+        }
+
+        .card-name {
+            display: flex;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            background: #fffefe;
+            padding: 6px 12px;
+            border-radius: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Rarity colors for card names */
+        .card-name.rarity-common { color: #808080; }
+        .card-name.rarity-uncommon { color: #4CAF50; }
+        .card-name.rarity-rare { color: #2196F3; }
+        .card-name.rarity-epic { color: #9C27B0; }
+        .card-name.rarity-legendary { color: #FF9800; }
+        .card-name.rarity-really-rare { color: #9C27B0; }
+
+        .card-rarity {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 6px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 100;
+        }
+
+        .card-rarity.rarity-common { background: linear-gradient(135deg, #808080 0%, #606060 100%); }
+        .card-rarity.rarity-uncommon { background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%); }
+        .card-rarity.rarity-rare { background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); }
+        .card-rarity.rarity-epic { background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); }
+        .card-rarity.rarity-legendary { background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); }
+        .card-rarity.rarity-really-rare { background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); }
+
+        .card-shiny-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 9px;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #FFD700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            z-index: 101;
+            backdrop-filter: blur(2px);
+        }
+
+        .card-secret-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 9px;
+            color: white;
+            background: linear-gradient(135deg, #9C27B0 0%, #FFD700 100%);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            padding: 4px 8px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(156, 39, 176, 0.6);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            z-index: 102;
+            backdrop-filter: blur(2px);
+        }
+
+        .holographic-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 15px;
+            background: linear-gradient(
+                120deg,
+                rgba(255, 255, 255, 0),
+                rgba(255, 254, 227, 0.9),
+                rgba(255, 255, 255, 0),
+                rgba(255, 224, 120, 0.9),
+                rgba(255, 255, 255, 0),
+                rgba(175, 255, 181, 0.9),
+                rgba(255, 255, 255, 0),
+                rgba(255, 254, 227, 0.9),
+                rgba(255, 255, 255, 0),
+                rgba(150, 245, 255, 0.9),
+                rgba(255, 255, 255, 0)
+            );
+            background-size: 500% 500%;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            mix-blend-mode: overlay;
+            filter: blur(2px);
+        }
+
+        .card-display.shiny .holographic-overlay {
+            animation: rainbowShimmer 10.5s linear infinite;
+            opacity: 1 !important;
+        }
+
+        @keyframes rainbowShimmer {
+            0% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .card-display.secret {
+            border: 10px solid transparent;
+            background: linear-gradient(#fffefe, #fffefe) padding-box,
+                        linear-gradient(90deg, #ff006e, #8338ec, #3a86ff, #06ffa5, #ffbe0b, #ff006e) border-box;
+            background-size: 100% 100%, 200% 200%;
+            animation: secretBorderGlow 3s linear infinite;
+        }
+
+        @keyframes secretBorderGlow {
+            0% { background-position: 0% 0%, 0% 0%; }
+            100% { background-position: 0% 0%, 200% 200%; }
+        }
+
+        .card-display.secret::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 0, 110, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(131, 56, 236, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 20%, rgba(58, 134, 255, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 80%, rgba(6, 255, 165, 0.3) 0%, transparent 50%);
+            background-size: 200% 200%;
+            animation: secretBackground 4s ease-in-out infinite;
+            z-index: -1;
+            border-radius: 20px;
+        }
+
+        @keyframes secretBackground {
+            0%, 100% { background-position: 0% 0%, 100% 100%, 50% 0%, 50% 100%; }
+            50% { background-position: 100% 100%, 0% 0%, 0% 50%, 100% 50%; }
+        }
+
+        /* Tooltip */
+        .discovery-tooltip {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 200;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-slot:hover .discovery-tooltip {
+            opacity: 1;
+        }
+
+        .discovery-tooltip::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid rgba(0, 0, 0, 0.9);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.5em;
+        }
+
+        .error {
+            text-align: center;
+            padding: 40px;
+            color: #ff6b6b;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← Back to Collection</a>
+            <h1>🎴 Pack Discovery</h1>
+        </div>
+
+        <div id="packSelectionView" style="display: none;">
+            <div class="pack-selector" id="packSelector" style="display: none;">
+                <label for="packSelect" style="display: block; margin-bottom: 10px; font-size: 1.1em;">Select Pack:</label>
+                <select id="packSelect">
+                    <option value="">Loading packs...</option>
+                </select>
+            </div>
+            <div class="packs-grid" id="packsGrid"></div>
+        </div>
+
+        <div id="packContainer" style="display: none;">
+            <div class="loading">Loading pack data...</div>
+        </div>
+    </div>
+
+    <script>
+        const IMAGE_BASE_URL = 'https://raw.githubusercontent.com/MikoOki/mikooki-card-club/main/';
+        
+        // Get pack name from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        let packName = urlParams.get('pack') || null; // Show pack selection if not specified
+
+        let allData = null;
+        let metadata = null;
+
+        async function init() {
+            try {
+                // Load inventory data
+                const response = await fetch('public_inventory.json');
+                allData = await response.json();
+                metadata = allData.metadata || {};
+                
+                // If pack is specified in URL, show that pack's cards
+                // Otherwise, show pack selection
+                if (packName && packName !== 'null') {
+                    showPackCards(packName);
+                } else {
+                    showPackSelection();
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('packContainer').innerHTML = 
+                    '<div class="error">Failed to load pack data. Please try again later.</div>';
+            }
+        }
+
+        function showPackSelection() {
+            document.getElementById('packSelectionView').style.display = 'block';
+            document.getElementById('packContainer').style.display = 'none';
+            
+            const packs = allData.packs || {};
+            const packsGrid = document.getElementById('packsGrid');
+            packsGrid.innerHTML = '';
+            
+            const packNames = Object.keys(packs).sort();
+            
+            packNames.forEach(packNameItem => {
+                const pack = packs[packNameItem];
+                const packItem = document.createElement('div');
+                packItem.className = 'pack-item';
+                
+                const packBodyUrl = IMAGE_BASE_URL ? `${IMAGE_BASE_URL}${pack.pack_body_image_path}` : pack.pack_body_image_path;
+                const tearTopUrl = pack.tear_top_image_path 
+                    ? (IMAGE_BASE_URL ? `${IMAGE_BASE_URL}${pack.tear_top_image_path}` : pack.tear_top_image_path)
+                    : null;
+                
+                const tearTopImg = tearTopUrl 
+                    ? `<img class="pack-tear-top" src="${tearTopUrl}" alt="${packNameItem} tear top" 
+                             onerror="this.style.display='none'">`
+                    : '';
+                
+                packItem.innerHTML = `
+                    <div class="pack-image-wrapper">
+                        <img class="pack-image" src="${packBodyUrl}" alt="${packNameItem}" 
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'padding: 40px; text-align: center; font-size: 2em;\\'>?</div>'">
+                        ${tearTopImg}
+                    </div>
+                    <div class="pack-name">${packNameItem}</div>
+                    <button class="view-cards-btn">View Cards →</button>
+                `;
+                
+                // Make the whole pack item clickable
+                packItem.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('view-cards-btn')) {
+                        e.stopPropagation();
+                    }
+                    showPackCards(packNameItem);
+                });
+                
+                packsGrid.appendChild(packItem);
+            });
+            
+            // Populate pack selector
+            populatePackSelector();
+        }
+
+        function showPackCards(selectedPackName) {
+            packName = selectedPackName;
+            document.getElementById('packSelectionView').style.display = 'none';
+            document.getElementById('packContainer').style.display = 'block';
+            
+            // Update URL without reload
+            window.history.pushState({pack: packName}, '', `pack.html?pack=${encodeURIComponent(packName)}`);
+            
+            // Populate pack selector
+            populatePackSelector();
+            
+            // Display pack cards
+            displayPack(packName);
+        }
+
+        function populatePackSelector() {
+            const packSelect = document.getElementById('packSelect');
+            const packs = allData.packs || {};
+            const packNames = Object.keys(packs).sort();
+            
+            packSelect.innerHTML = '';
+            packNames.forEach(pack => {
+                const option = document.createElement('option');
+                option.value = pack;
+                option.textContent = pack;
+                if (pack === packName) {
+                    option.selected = true;
+                }
+                packSelect.appendChild(option);
+            });
+            
+            // Show selector if there are multiple packs
+            if (packNames.length > 1) {
+                document.getElementById('packSelector').style.display = 'block';
+            }
+            
+            // Handle pack change
+            packSelect.onchange = function() {
+                const selectedPack = this.value;
+                if (selectedPack) {
+                    showPackCards(selectedPack);
+                }
+            };
+        }
+
+        function displayPack(packName) {
+            const container = document.getElementById('packContainer');
+            
+            if (!allData || !allData.discoveries) {
+                container.innerHTML = '<div class="error">No pack data available</div>';
+                return;
+            }
+
+            // Get all cards for this pack from discoveries or metadata
+            // We need to get card info from user inventories or build from discoveries
+            const packCards = getAllPackCards(packName);
+            
+            if (packCards.length === 0) {
+                container.innerHTML = '<div class="error">No cards found for this pack</div>';
+                return;
+            }
+
+            // Sort cards by rarity
+            const rarityOrder = {
+                'Really Rare': -1,
+                'Legendary': 0,
+                'Epic': 1,
+                'Rare': 2,
+                'Uncommon': 3,
+                'Common': 4
+            };
+
+            packCards.sort((a, b) => {
+                const aRarity = rarityOrder[a.rarity] ?? 999;
+                const bRarity = rarityOrder[b.rarity] ?? 999;
+                if (aRarity !== bRarity) {
+                    return aRarity - bRarity;
+                }
+                return a.card_id - b.card_id;
+            });
+
+            // Count discovered vs total
+            const discoveredCount = packCards.filter(c => c.discovered).length;
+            const totalCount = packCards.length;
+
+            const backButton = document.createElement('button');
+            backButton.className = 'back-link';
+            backButton.textContent = '← Back to Packs';
+            backButton.style.marginBottom = '20px';
+            backButton.addEventListener('click', showPackSelection);
+            
+            container.innerHTML = `
+                <div class="pack-header">
+                    <h2>${packName}</h2>
+                    <div class="pack-stats">
+                        ${discoveredCount} / ${totalCount} cards discovered
+                    </div>
+                </div>
+                <div class="cards-grid" id="cardsGrid"></div>
+            `;
+            
+            container.insertBefore(backButton, container.firstChild);
+
+            const grid = document.getElementById('cardsGrid');
+            packCards.forEach(card => {
+                const cardElement = createCardElement(card, packName);
+                grid.appendChild(cardElement);
+            });
+        }
+
+        function getAllPackCards(packName) {
+            // Get all cards from metadata (includes all cards, discovered or not)
+            const allCards = allData.all_cards || {};
+            const packCardsMetadata = allCards[packName] || [];
+            
+            // Get discovery info
+            const discoveries = allData.discoveries || {};
+            const packDiscoveries = discoveries[packName] || {};
+            
+            // Build a map of discovered variants
+            const discoveredVariants = new Set();
+            for (const [username, userData] of Object.entries(allData.users || {})) {
+                const userPacks = userData.packs || {};
+                const userPackCards = userPacks[packName] || [];
+                for (const card of userPackCards) {
+                    const variant = card.is_secret ? 'secret' : (card.is_shiny ? 'shiny' : 'normal');
+                    discoveredVariants.add(`${card.card_id}_${variant}`);
+                }
+            }
+            
+            // Build card list - show normal variant for each card, plus discovered shiny/secret variants
+            const cards = [];
+            
+            // First, add all normal cards (one per card_id)
+            for (const cardMeta of packCardsMetadata) {
+                const normalKey = `${cardMeta.card_id}_normal`;
+                const isDiscovered = discoveredVariants.has(normalKey);
+                
+                const cardDiscoveries = packDiscoveries[cardMeta.card_id] || {};
+                const discovery = cardDiscoveries['normal'];
+                
+                cards.push({
+                    card_id: cardMeta.card_id,
+                    card_name: cardMeta.card_name,
+                    rarity: cardMeta.rarity,
+                    front_image_path: cardMeta.front_image_path,
+                    is_shiny: false,
+                    is_secret: false,
+                    discovered: isDiscovered,
+                    discovery: discovery || null
+                });
+            }
+            
+            // Add discovered shiny and secret variants
+            for (const [username, userData] of Object.entries(allData.users || {})) {
+                const userPacks = userData.packs || {};
+                const userPackCards = userPacks[packName] || [];
+                
+                for (const card of userPackCards) {
+                    if (card.is_shiny || card.is_secret) {
+                        const variant = card.is_secret ? 'secret' : 'shiny';
+                        const variantKey = `${card.card_id}_${variant}`;
+                        
+                        // Check if we already added this variant
+                        const exists = cards.some(c => 
+                            c.card_id === card.card_id && 
+                            ((variant === 'shiny' && c.is_shiny) || (variant === 'secret' && c.is_secret))
+                        );
+                        
+                        if (!exists) {
+                            const cardMeta = packCardsMetadata.find(c => c.card_id === card.card_id);
+                            if (cardMeta) {
+                                const cardDiscoveries = packDiscoveries[card.card_id] || {};
+                                const discovery = cardDiscoveries[variant];
+                                
+                                cards.push({
+                                    card_id: card.card_id,
+                                    card_name: card.card_name,
+                                    rarity: cardMeta.rarity,
+                                    front_image_path: card.is_secret && cardMeta.secret_image_path 
+                                        ? cardMeta.secret_image_path 
+                                        : cardMeta.front_image_path,
+                                    is_shiny: card.is_shiny || false,
+                                    is_secret: card.is_secret || false,
+                                    discovered: true,
+                                    discovery: discovery || null
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+
+            return cards;
+        }
+
+        function createCardElement(card, packName) {
+            const slot = document.createElement('div');
+            slot.className = 'card-slot';
+
+            const isDiscovered = card.discovered;
+            const rarityClass = card.rarity.toLowerCase().replace(/\s+/g, '-');
+            const rarityColorClass = `rarity-${rarityClass}`;
+            
+            let imageUrl = '';
+            if (isDiscovered && card.front_image_path) {
+                imageUrl = IMAGE_BASE_URL ? `${IMAGE_BASE_URL}${card.front_image_path}` : card.front_image_path;
+            }
+
+            const classes = `card-display ${isDiscovered ? '' : 'undiscovered'} ${card.is_shiny ? 'shiny' : ''} ${card.is_secret ? 'secret' : ''}`;
+            
+            const badge = card.is_secret 
+                ? '<div class="card-secret-badge">🔒 SECRET</div>' 
+                : (card.is_shiny ? '<div class="card-shiny-badge">✨ Shiny</div>' : '');
+
+            const tooltipText = card.discovery 
+                ? `First discovered by: ${card.discovery.username} on ${formatDate(card.discovery.discovered_at)}`
+                : 'Not yet discovered';
+
+            slot.innerHTML = `
+                <div class="${classes}">
+                    ${isDiscovered ? `<img class="card-image" src="${imageUrl}" alt="${card.card_name}" 
+                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect width=%22200%22 height=%22200%22 fill=%22%23ddd%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2224%22>?</text></svg>'">` : ''}
+                    <div class="holographic-overlay"></div>
+                    ${isDiscovered ? `
+                        <div class="card-info-overlay">
+                            <div class="card-name ${rarityColorClass}">${card.card_name}</div>
+                        </div>
+                        <div class="card-rarity ${rarityColorClass}">${card.rarity}</div>
+                        ${badge}
+                    ` : ''}
+                </div>
+                <div class="discovery-tooltip">${tooltipText}</div>
+            `;
+
+            return slot;
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'Unknown';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+        }
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>

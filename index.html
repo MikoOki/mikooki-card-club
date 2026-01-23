@@ -278,6 +278,9 @@
         .card-name.rarity-legendary {
             color: #FF9800;
         }
+        .card-name.rarity-really-rare {
+            color: #9C27B0;
+        }
 
         /* Rarity box - vertical text on bottom right, reads bottom to top */
         .card-rarity {
@@ -315,6 +318,77 @@
         }
         .card-rarity.rarity-legendary {
             background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+        }
+        .card-rarity.rarity-really-rare {
+            background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+        }
+
+        /* Secret card styling - holographic border and background */
+        .card.secret {
+            position: relative;
+        }
+
+        .card.secret .card-front {
+            border: 10px solid transparent;
+            background: linear-gradient(#fffefe, #fffefe) padding-box,
+                        linear-gradient(90deg, #ff006e, #8338ec, #3a86ff, #06ffa5, #ffbe0b, #ff006e) border-box;
+            background-size: 100% 100%, 200% 200%;
+            animation: secretBorderGlow 3s linear infinite;
+        }
+
+        @keyframes secretBorderGlow {
+            0% {
+                background-position: 0% 0%, 0% 0%;
+            }
+            100% {
+                background-position: 0% 0%, 200% 200%;
+            }
+        }
+
+        .card.secret .card-front::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 0, 110, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(131, 56, 236, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 20%, rgba(58, 134, 255, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 80%, rgba(6, 255, 165, 0.3) 0%, transparent 50%);
+            background-size: 200% 200%;
+            animation: secretBackground 4s ease-in-out infinite;
+            z-index: -1;
+            border-radius: 20px;
+        }
+
+        @keyframes secretBackground {
+            0%, 100% {
+                background-position: 0% 0%, 100% 100%, 50% 0%, 50% 100%;
+            }
+            50% {
+                background-position: 100% 100%, 0% 0%, 0% 50%, 100% 50%;
+            }
+        }
+
+        /* Secret badge - top-right corner (same position as shiny badge) */
+        .card-secret-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 9px;
+            color: white;
+            background: linear-gradient(135deg, #9C27B0 0%, #FFD700 100%);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            padding: 4px 8px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(156, 39, 176, 0.6);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            z-index: 102;
+            backdrop-filter: blur(2px);
         }
 
         /* Shiny indicator badge - readable with gold border */
@@ -471,6 +545,7 @@
 
             // Rarity order for sorting
             const rarityOrder = {
+                'Really Rare': -1,
                 'Legendary': 0,
                 'Epic': 1,
                 'Rare': 2,
@@ -501,6 +576,12 @@
                     <div class="pack-header">
                         <h3>${packName}</h3>
                         <div class="pack-stats">${uniqueCards} unique cards • ${totalInPack} total</div>
+                        <a href="pack.html?pack=${encodeURIComponent(packName)}" 
+                           style="display: inline-block; margin-top: 15px; padding: 10px 20px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 15px; color: white; text-decoration: none; transition: all 0.3s;"
+                           onmouseover="this.style.background='rgba(255, 255, 255, 0.35)'; this.style.transform='translateY(-2px)'"
+                           onmouseout="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(0)'">
+                            View Pack Discovery →
+                        </a>
                     </div>
                     <div class="cards-grid" id="pack-${packName.replace(/\s+/g, '-')}"></div>
                 `;
@@ -518,22 +599,30 @@
 
         function createCardElement(card, packName) {
             const cardDiv = document.createElement('div');
-            const rarityClass = card.rarity.toLowerCase();
-            const classes = `card ${rarityClass} ${card.is_shiny ? 'shiny' : ''}`;
+            const rarityClass = card.rarity.toLowerCase().replace(/\s+/g, '-');
+            const isSecret = card.is_secret === true;
+            const isShiny = card.is_shiny === true && !isSecret; // Secrets cannot be shiny
+            const classes = `card ${rarityClass} ${isShiny ? 'shiny' : ''} ${isSecret ? 'secret' : ''}`;
             cardDiv.className = classes;
 
             // Build image path - front_image_path is already relative (e.g., "packs/Himbo/Common/1.png")
-            // If front_image_path is provided in card data, use that, otherwise construct it
+            // For secret cards, use the secret image path
             let imagePath;
             if (card.front_image_path) {
                 imagePath = card.front_image_path;
             } else {
-                imagePath = `packs/${packName}/${card.rarity}/${card.card_id}.png`;
+                // Fallback: construct path
+                const suffix = isSecret ? '_secret.png' : '.png';
+                imagePath = `packs/${packName}/${card.rarity}/${card.card_id}${suffix}`;
             }
             const imageUrl = IMAGE_BASE_URL ? `${IMAGE_BASE_URL}${imagePath}` : imagePath;
 
             // Build card HTML matching overlay exactly with flip functionality
             const rarityColorClass = `rarity-${rarityClass}`;
+            const badge = isSecret 
+                ? '<div class="card-secret-badge">🔒 SECRET</div>' 
+                : (isShiny ? '<div class="card-shiny-badge">✨ Shiny</div>' : '');
+            
             cardDiv.innerHTML = `
                 <div class="card-front">
                     <img class="card-image" src="${imageUrl}" 
@@ -544,7 +633,7 @@
                         <div class="card-name ${rarityColorClass}">${card.card_name}</div>
                     </div>
                     <div class="card-rarity ${rarityColorClass}">${card.rarity}</div>
-                    ${card.is_shiny ? '<div class="card-shiny-badge">✨ Shiny</div>' : ''}
+                    ${badge}
                     <div class="card-count">×${card.quantity}</div>
                 </div>
                 <div class="card-back">
