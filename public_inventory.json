@@ -390,6 +390,7 @@
       "description": "",
       "pack_body_image_path": "packs/Himbo/pack_body.png",
       "tear_top_image_path": "packs/Himbo/tear_top.png",
+      "pack_discovery_bg_path": "packs/Himbo/Himbo_packdiscoverybg.png",
       "rarities": [
         "Common",
         "Uncommon",
@@ -400,7 +401,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-01-23T13:03:54.310678",
+    "last_updated": "2026-01-23T13:27:55.557485",
     "total_users": 6,
     "version": "1.0"
   }
