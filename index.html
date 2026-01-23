@@ -164,6 +164,17 @@
             overflow: hidden;
         }
 
+        /* Ensure all front face child elements respect backface-visibility on mobile */
+        .card-front * {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        /* Hide front face elements when card is flipped (fixes mobile issue where tags remain visible) */
+        .card.flipped .card-front {
+            visibility: hidden;
+        }
+
         .card-front {
             background-color: #fffefe;
             border: 10px solid #fffefe;
