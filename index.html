@@ -563,8 +563,42 @@
                 const packSection = document.createElement('div');
                 packSection.className = 'pack-section';
 
-                // Sort cards by rarity (Legendary first, then Epic, Rare, Uncommon, Common)
+                // Sort cards: Secret first, then Shiny (by rarity), then Normal (by rarity)
                 const sortedCards = [...cards].sort((a, b) => {
+                    const aIsSecret = a.is_secret === true;
+                    const bIsSecret = b.is_secret === true;
+                    const aIsShiny = a.is_shiny === true && !aIsSecret;
+                    const bIsShiny = b.is_shiny === true && !bIsSecret;
+                    
+                    // Secret cards come first
+                    if (aIsSecret && !bIsSecret) return -1;
+                    if (!aIsSecret && bIsSecret) return 1;
+                    
+                    // If both are secret, sort by rarity
+                    if (aIsSecret && bIsSecret) {
+                        const aRarity = rarityOrder[a.rarity] ?? 999;
+                        const bRarity = rarityOrder[b.rarity] ?? 999;
+                        if (aRarity !== bRarity) {
+                            return aRarity - bRarity;
+                        }
+                        return a.card_name.localeCompare(b.card_name);
+                    }
+                    
+                    // Shiny cards come after secrets
+                    if (aIsShiny && !bIsShiny) return -1;
+                    if (!aIsShiny && bIsShiny) return 1;
+                    
+                    // If both are shiny, sort by rarity
+                    if (aIsShiny && bIsShiny) {
+                        const aRarity = rarityOrder[a.rarity] ?? 999;
+                        const bRarity = rarityOrder[b.rarity] ?? 999;
+                        if (aRarity !== bRarity) {
+                            return aRarity - bRarity;
+                        }
+                        return a.card_name.localeCompare(b.card_name);
+                    }
+                    
+                    // Normal cards come last, sort by rarity
                     const aRarity = rarityOrder[a.rarity] ?? 999;
                     const bRarity = rarityOrder[b.rarity] ?? 999;
                     if (aRarity !== bRarity) {
