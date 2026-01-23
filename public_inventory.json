@@ -2,7 +2,7 @@
   "users": {
     "test": {
       "avatar": "https://ui-avatars.com/api/?name=test&background=667eea&color=fff&size=128",
-      "total_cards": 123,
+      "total_cards": 126,
       "packs": {
         "Himbo": [
           {
@@ -13,7 +13,7 @@
             "stats": {},
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 78,
+            "quantity": 81,
             "acquired_at": "2026-01-17T11:26:45.695255",
             "front_image_path": "packs/Himbo/Common/1.png"
           },
@@ -81,7 +81,7 @@
       }
     },
     "test2": {
-      "avatar": "https://ui-avatars.com/api/?name=test2&background=667eea&color=fff&size=128",
+      "avatar": "https://static-cdn.jtvnw.net/user-default-pictures-uv/de130ab0-def7-11e9-b668-784f43822e80-profile_image-300x300.png",
       "total_cards": 42,
       "packs": {
         "Himbo": [
@@ -161,7 +161,7 @@
       }
     },
     "fred": {
-      "avatar": "https://ui-avatars.com/api/?name=fred&background=667eea&color=fff&size=128",
+      "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/fred-profile_image-a09b99fef600ca46-300x300.png",
       "total_cards": 12,
       "packs": {
         "Himbo": [
@@ -217,7 +217,7 @@
       }
     },
     "Tolben": {
-      "avatar": "https://ui-avatars.com/api/?name=Tolben&background=667eea&color=fff&size=128",
+      "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/57e51fab-864e-4fe5-89f6-f9cd0810f141-profile_image-300x300.jpeg",
       "total_cards": 21,
       "packs": {
         "Himbo": [
@@ -273,7 +273,7 @@
       }
     },
     "TEstt": {
-      "avatar": "https://ui-avatars.com/api/?name=TEstt&background=667eea&color=fff&size=128",
+      "avatar": "https://static-cdn.jtvnw.net/user-default-pictures-uv/294c98b5-e34d-42cd-a8f0-140b72fba9b0-profile_image-300x300.png",
       "total_cards": 3,
       "packs": {
         "Himbo": [
@@ -305,7 +305,7 @@
       }
     },
     "test1": {
-      "avatar": "https://ui-avatars.com/api/?name=test1&background=667eea&color=fff&size=128",
+      "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/test1-profile_image-5rU4Za5Mp1JxuWg-300x300.png",
       "total_cards": 3,
       "packs": {
         "Himbo": [
@@ -385,7 +385,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-01-23T12:55:29.360268",
+    "last_updated": "2026-01-23T12:56:16.788904",
     "total_users": 6,
     "version": "1.0"
   }
