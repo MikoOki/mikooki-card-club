@@ -708,27 +708,17 @@
             const discoveries = allData.discoveries || {};
             const packDiscoveries = discoveries[packName] || {};
             
-            // Build a map of discovered variants
-            const discoveredVariants = new Set();
-            for (const [username, userData] of Object.entries(allData.users || {})) {
-                const userPacks = userData.packs || {};
-                const userPackCards = userPacks[packName] || [];
-                for (const card of userPackCards) {
-                    const variant = card.is_secret ? 'secret' : (card.is_shiny ? 'shiny' : 'normal');
-                    discoveredVariants.add(`${card.card_id}_${variant}`);
-                }
-            }
-            
             // Build card list - show normal variant for each card, plus discovered shiny/secret variants
             const cards = [];
             
             // First, add all normal cards (one per card_id)
             for (const cardMeta of packCardsMetadata) {
-                const normalKey = `${cardMeta.card_id}_normal`;
-                const isDiscovered = discoveredVariants.has(normalKey);
-                
                 const cardDiscoveries = packDiscoveries[cardMeta.card_id] || {};
                 const discovery = cardDiscoveries['normal'];
+                
+                // A card is only discovered if there's a discovery record for it
+                // Not just if someone owns it (ownership != discovery)
+                const isDiscovered = discovery !== undefined && discovery !== null;
                 
                 cards.push({
                     card_id: cardMeta.card_id,
@@ -742,42 +732,45 @@
                 });
             }
             
-            // Add discovered shiny and secret variants
-            for (const [username, userData] of Object.entries(allData.users || {})) {
-                const userPacks = userData.packs || {};
-                const userPackCards = userPacks[packName] || [];
+            // Add discovered shiny and secret variants (only if they have discovery records)
+            for (const cardMeta of packCardsMetadata) {
+                const cardDiscoveries = packDiscoveries[cardMeta.card_id] || {};
                 
-                for (const card of userPackCards) {
-                    if (card.is_shiny || card.is_secret) {
-                        const variant = card.is_secret ? 'secret' : 'shiny';
-                        const variantKey = `${card.card_id}_${variant}`;
-                        
-                        // Check if we already added this variant
-                        const exists = cards.some(c => 
-                            c.card_id === card.card_id && 
-                            ((variant === 'shiny' && c.is_shiny) || (variant === 'secret' && c.is_secret))
-                        );
-                        
-                        if (!exists) {
-                            const cardMeta = packCardsMetadata.find(c => c.card_id === card.card_id);
-                            if (cardMeta) {
-                                const cardDiscoveries = packDiscoveries[card.card_id] || {};
-                                const discovery = cardDiscoveries[variant];
-                                
-                                cards.push({
-                                    card_id: card.card_id,
-                                    card_name: card.card_name,
-                                    rarity: cardMeta.rarity,
-                                    front_image_path: card.is_secret && cardMeta.secret_image_path 
-                                        ? cardMeta.secret_image_path 
-                                        : cardMeta.front_image_path,
-                                    is_shiny: card.is_shiny || false,
-                                    is_secret: card.is_secret || false,
-                                    discovered: true,
-                                    discovery: discovery || null
-                                });
-                            }
-                        }
+                // Check for shiny variant discovery
+                if (cardDiscoveries['shiny']) {
+                    const exists = cards.some(c => 
+                        c.card_id === cardMeta.card_id && c.is_shiny && !c.is_secret
+                    );
+                    if (!exists) {
+                        cards.push({
+                            card_id: cardMeta.card_id,
+                            card_name: cardMeta.card_name,
+                            rarity: cardMeta.rarity,
+                            front_image_path: cardMeta.front_image_path,
+                            is_shiny: true,
+                            is_secret: false,
+                            discovered: true,
+                            discovery: cardDiscoveries['shiny']
+                        });
+                    }
+                }
+                
+                // Check for secret variant discovery
+                if (cardDiscoveries['secret'] && cardMeta.secret_image_path) {
+                    const exists = cards.some(c => 
+                        c.card_id === cardMeta.card_id && c.is_secret
+                    );
+                    if (!exists) {
+                        cards.push({
+                            card_id: cardMeta.card_id,
+                            card_name: cardMeta.card_name,
+                            rarity: cardMeta.rarity,
+                            front_image_path: cardMeta.secret_image_path,
+                            is_shiny: false,
+                            is_secret: true,
+                            discovered: true,
+                            discovery: cardDiscoveries['secret']
+                        });
                     }
                 }
             }
