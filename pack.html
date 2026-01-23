@@ -268,30 +268,48 @@
             position: relative;
         }
 
-        .card-display.undiscovered::before {
+        /* Undiscovered shiny cards - show holographic effect */
+        .card-display.undiscovered.shiny {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* Undiscovered secret cards - show secret border and background effects */
+        .card-display.undiscovered.secret {
+            border: 10px solid transparent;
+            background: linear-gradient(#667eea, #764ba2) padding-box,
+                        linear-gradient(90deg, #ff006e, #8338ec, #3a86ff, #06ffa5, #ffbe0b, #ff006e) border-box;
+            background-size: 100% 100%, 200% 200%;
+            animation: secretBorderGlow 3s linear infinite;
+        }
+
+        /* Question mark overlay for all undiscovered cards */
+        .card-display.undiscovered::after {
             content: '?';
             font-size: 8em;
             color: rgba(255, 255, 255, 0.5);
             font-weight: bold;
             text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             position: absolute;
-            z-index: 1;
+            z-index: 100;
+            pointer-events: none;
         }
 
-        /* Ensure undiscovered styling overrides secret styling */
-        .card-display.undiscovered.secret {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-            border: 10px solid rgba(255, 255, 255, 0.3) !important;
-        }
-
+        /* Secret background effect for undiscovered secret cards */
         .card-display.undiscovered.secret::before {
-            content: '?' !important;
-            font-size: 8em;
-            color: rgba(255, 255, 255, 0.5);
-            font-weight: bold;
-            text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            content: '';
             position: absolute;
-            z-index: 10;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 0, 110, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(131, 56, 236, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 20%, rgba(58, 134, 255, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 80%, rgba(6, 255, 165, 0.3) 0%, transparent 50%);
+            background-size: 200% 200%;
+            animation: secretBackground 4s ease-in-out infinite;
+            z-index: -1;
+            border-radius: 20px;
         }
 
         .card-image {
@@ -427,6 +445,12 @@
         }
 
         .card-display.shiny .holographic-overlay {
+            animation: rainbowShimmer 10.5s linear infinite;
+            opacity: 1 !important;
+        }
+
+        /* Ensure holographic overlay works on undiscovered shiny cards */
+        .card-display.undiscovered.shiny .holographic-overlay {
             animation: rainbowShimmer 10.5s linear infinite;
             opacity: 1 !important;
         }
@@ -895,17 +919,18 @@
                 ? `First discovered by: ${card.discovery.username} on ${formatDate(card.discovery.discovered_at)}`
                 : 'Not yet discovered';
 
-            // For undiscovered cards, always show "?" - even for secrets
+            // For discovered cards, show image and info
+            // For undiscovered cards, show effects but keep "?" visible
             const cardContent = isDiscovered 
                 ? `<img class="card-image" src="${imageUrl}" alt="${card.card_name}" 
-                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect width=%22200%22 height=%22200%22 fill=%22%23ddd%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2224%22>?</text></svg>'">
+                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect width=%22200%22 height=%22200%22 fill=%22%23ddd%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2224%22>?</text></svg>'"> 
                     <div class="holographic-overlay"></div>
                     <div class="card-info-overlay">
                         <div class="card-name ${rarityColorClass}">${card.card_name}</div>
                     </div>
                     <div class="card-rarity ${rarityColorClass}">${card.rarity}</div>
                     ${badge}`
-                : ''; // Undiscovered cards show "?" via CSS ::before
+                : (card.is_shiny ? '<div class="holographic-overlay"></div>' : ''); // Add holographic overlay for undiscovered shiny cards
 
             slot.innerHTML = `
                 <div class="${classes}">
