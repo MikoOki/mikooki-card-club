@@ -395,7 +395,7 @@
     },
     "testuser1": {
       "avatar": "https://static-cdn.jtvnw.net/user-default-pictures-uv/ebe4cd89-b4f4-4cd9-adac-2f30151b4209-profile_image-300x300.png",
-      "total_cards": 3,
+      "total_cards": 6,
       "packs": {
         "Himbo": [
           {
@@ -411,8 +411,25 @@
             },
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 3,
+            "quantity": 5,
             "acquired_at": "2026-02-20T20:47:22.867501",
+            "front_image_path": "packs/Himbo/Common/1.png"
+          },
+          {
+            "card_id": 1,
+            "card_name": "Hazard",
+            "rarity": "Common",
+            "description": "Woof Woof, This hot Scottish man.",
+            "stats": {
+              "Heart": {
+                "value": "Large and soft",
+                "icon": "\u2764\ufe0f"
+              }
+            },
+            "is_shiny": true,
+            "is_secret": false,
+            "quantity": 1,
+            "acquired_at": "2026-02-20T20:48:32.673936",
             "front_image_path": "packs/Himbo/Common/1.png"
           }
         ]
@@ -435,6 +452,10 @@
         "secret": {
           "username": "test",
           "discovered_at": "2026-01-23T13:45:53.911961"
+        },
+        "shiny": {
+          "username": "testuser1",
+          "discovered_at": "2026-02-20T20:48:32.673936"
         }
       },
       "3": {
@@ -493,7 +514,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-02-20T20:47:33.042154",
+    "last_updated": "2026-02-20T20:48:48.508227",
     "total_users": 7,
     "version": "1.0"
   }
