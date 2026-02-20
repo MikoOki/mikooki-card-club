@@ -358,7 +358,7 @@
     },
     "test1": {
       "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/test1-profile_image-5rU4Za5Mp1JxuWg-300x300.png",
-      "total_cards": 6,
+      "total_cards": 9,
       "packs": {
         "Himbo": [
           {
@@ -386,9 +386,21 @@
             },
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 4,
+            "quantity": 6,
             "acquired_at": "2026-01-22T15:48:31.158865",
             "front_image_path": "packs/Himbo/Common/1.png"
+          },
+          {
+            "card_id": 2,
+            "card_name": "Cowboy",
+            "rarity": "Uncommon",
+            "description": "",
+            "stats": {},
+            "is_shiny": true,
+            "is_secret": false,
+            "quantity": 1,
+            "acquired_at": "2026-02-20T21:10:23.984244",
+            "front_image_path": "packs/Himbo/Uncommon/2.png"
           }
         ]
       }
@@ -466,6 +478,10 @@
         "normal": {
           "username": "test",
           "discovered_at": "2026-01-23T13:03:44.849728"
+        },
+        "shiny": {
+          "username": "test1",
+          "discovered_at": "2026-02-20T21:10:23.984244"
         }
       },
       "1": {
@@ -538,7 +554,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-02-20T21:08:32.068793",
+    "last_updated": "2026-02-20T21:10:34.191791",
     "total_users": 7,
     "version": "1.0"
   }

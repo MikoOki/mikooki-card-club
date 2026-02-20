@@ -1,0 +1,7 @@
+# Secrets and sensitive configs - never commit
+**/printer_config.json
+**/print_history.json
+modules/receipt_printer/printer_config.json
+modules/receipt_printer/print_history.json
+config.json
+*.log
