@@ -407,7 +407,7 @@
     },
     "testuser1": {
       "avatar": "https://static-cdn.jtvnw.net/user-default-pictures-uv/ebe4cd89-b4f4-4cd9-adac-2f30151b4209-profile_image-300x300.png",
-      "total_cards": 15,
+      "total_cards": 18,
       "packs": {
         "Himbo": [
           {
@@ -423,7 +423,7 @@
             },
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 11,
+            "quantity": 12,
             "acquired_at": "2026-02-20T20:47:22.867501",
             "front_image_path": "packs/Himbo/Common/1.png"
           },
@@ -464,7 +464,7 @@
             "stats": {},
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 1,
+            "quantity": 3,
             "acquired_at": "2026-02-20T21:01:12.157602",
             "front_image_path": "packs/Himbo/Uncommon/2.png"
           }
@@ -554,7 +554,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-02-20T21:10:34.191791",
+    "last_updated": "2026-02-20T21:23:58.624707",
     "total_users": 7,
     "version": "1.0"
   }
