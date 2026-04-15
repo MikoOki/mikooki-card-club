@@ -473,7 +473,7 @@
     },
     "testuser`1": {
       "avatar": "https://ui-avatars.com/api/?name=testuser`1&background=667eea&color=fff&size=128",
-      "total_cards": 3,
+      "total_cards": 6,
       "packs": {
         "Himbo": [
           {
@@ -489,7 +489,7 @@
             },
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 1,
+            "quantity": 2,
             "acquired_at": "2026-04-15T11:19:37.716934",
             "front_image_path": "packs/Himbo/Common/1.png"
           },
@@ -504,6 +504,18 @@
             "quantity": 2,
             "acquired_at": "2026-04-15T11:19:37.716958",
             "front_image_path": "packs/Himbo/Rare/3.png"
+          },
+          {
+            "card_id": 2,
+            "card_name": "Cowboy",
+            "rarity": "Uncommon",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "is_secret": false,
+            "quantity": 2,
+            "acquired_at": "2026-04-15T11:20:18.436121",
+            "front_image_path": "packs/Himbo/Uncommon/2.png"
           }
         ]
       }
@@ -591,7 +603,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-04-15T11:19:48.767648",
+    "last_updated": "2026-04-15T11:20:29.310839",
     "total_users": 8,
     "version": "1.0"
   }
