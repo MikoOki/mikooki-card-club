@@ -522,7 +522,7 @@
     },
     "joe billingsworth": {
       "avatar": "https://ui-avatars.com/api/?name=joe billingsworth&background=667eea&color=fff&size=128",
-      "total_cards": 9,
+      "total_cards": 12,
       "packs": {
         "Himbo": [
           {
@@ -533,7 +533,7 @@
             "stats": {},
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 2,
+            "quantity": 3,
             "acquired_at": "2026-04-15T11:28:21.084218",
             "front_image_path": "packs/Himbo/Uncommon/2.png"
           },
@@ -550,7 +550,7 @@
             },
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 6,
+            "quantity": 7,
             "acquired_at": "2026-04-15T11:28:21.084232",
             "front_image_path": "packs/Himbo/Common/1.png"
           },
@@ -570,6 +570,18 @@
             "quantity": 1,
             "acquired_at": "2026-04-15T14:10:40.796108",
             "front_image_path": "packs/Himbo/Common/1_secret.png"
+          },
+          {
+            "card_id": 3,
+            "card_name": "3",
+            "rarity": "Rare",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "is_secret": false,
+            "quantity": 1,
+            "acquired_at": "2026-04-15T14:11:05.382769",
+            "front_image_path": "packs/Himbo/Rare/3.png"
           }
         ]
       }
@@ -657,7 +669,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-04-15T14:10:52.384767",
+    "last_updated": "2026-04-15T14:11:16.955567",
     "total_users": 9,
     "version": "1.0"
   }
