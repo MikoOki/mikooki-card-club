@@ -519,6 +519,43 @@
           }
         ]
       }
+    },
+    "joe billingsworth": {
+      "avatar": "https://ui-avatars.com/api/?name=joe billingsworth&background=667eea&color=fff&size=128",
+      "total_cards": 3,
+      "packs": {
+        "Himbo": [
+          {
+            "card_id": 2,
+            "card_name": "Cowboy",
+            "rarity": "Uncommon",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "is_secret": false,
+            "quantity": 1,
+            "acquired_at": "2026-04-15T11:28:21.084218",
+            "front_image_path": "packs/Himbo/Uncommon/2.png"
+          },
+          {
+            "card_id": 1,
+            "card_name": "Hazard",
+            "rarity": "Common",
+            "description": "Woof Woof, This hot Scottish man.",
+            "stats": {
+              "Heart": {
+                "value": "Large and soft",
+                "icon": "\u2764\ufe0f"
+              }
+            },
+            "is_shiny": false,
+            "is_secret": false,
+            "quantity": 2,
+            "acquired_at": "2026-04-15T11:28:21.084232",
+            "front_image_path": "packs/Himbo/Common/1.png"
+          }
+        ]
+      }
     }
   },
   "discoveries": {
@@ -603,8 +640,8 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-04-15T11:27:29.956821",
-    "total_users": 8,
+    "last_updated": "2026-04-15T11:28:32.758206",
+    "total_users": 9,
     "version": "1.0"
   }
 }
