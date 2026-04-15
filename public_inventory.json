@@ -522,7 +522,7 @@
     },
     "joe billingsworth": {
       "avatar": "https://ui-avatars.com/api/?name=joe billingsworth&background=667eea&color=fff&size=128",
-      "total_cards": 3,
+      "total_cards": 6,
       "packs": {
         "Himbo": [
           {
@@ -533,7 +533,7 @@
             "stats": {},
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 1,
+            "quantity": 2,
             "acquired_at": "2026-04-15T11:28:21.084218",
             "front_image_path": "packs/Himbo/Uncommon/2.png"
           },
@@ -550,7 +550,7 @@
             },
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 2,
+            "quantity": 4,
             "acquired_at": "2026-04-15T11:28:21.084232",
             "front_image_path": "packs/Himbo/Common/1.png"
           }
@@ -640,7 +640,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-04-15T11:28:32.758206",
+    "last_updated": "2026-04-15T14:10:23.036743",
     "total_users": 9,
     "version": "1.0"
   }
