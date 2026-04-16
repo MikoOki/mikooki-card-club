@@ -539,7 +539,7 @@
     },
     "testr": {
       "avatar": "https://static-cdn.jtvnw.net/user-default-pictures-uv/ebb84563-db81-4b9c-8940-64ed33ccfc7b-profile_image-300x300.png",
-      "total_cards": 6,
+      "total_cards": 9,
       "packs": {
         "Himbo": [
           {
@@ -567,9 +567,21 @@
             },
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 3,
+            "quantity": 5,
             "acquired_at": "2026-04-16T11:29:04.893565",
             "front_image_path": "packs/Himbo/Common/1.png"
+          },
+          {
+            "card_id": 3,
+            "card_name": "3",
+            "rarity": "Rare",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "is_secret": false,
+            "quantity": 1,
+            "acquired_at": "2026-04-16T11:29:22.935796",
+            "front_image_path": "packs/Himbo/Rare/3.png"
           }
         ]
       }
@@ -661,7 +673,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-04-16T11:29:25.705697",
+    "last_updated": "2026-04-16T11:29:34.472409",
     "total_users": 9,
     "version": "1.0"
   }
