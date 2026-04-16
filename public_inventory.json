@@ -539,7 +539,7 @@
     },
     "testr": {
       "avatar": "https://static-cdn.jtvnw.net/user-default-pictures-uv/ebb84563-db81-4b9c-8940-64ed33ccfc7b-profile_image-300x300.png",
-      "total_cards": 9,
+      "total_cards": 12,
       "packs": {
         "Himbo": [
           {
@@ -567,7 +567,7 @@
             },
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 5,
+            "quantity": 6,
             "acquired_at": "2026-04-16T11:29:04.893565",
             "front_image_path": "packs/Himbo/Common/1.png"
           },
@@ -582,6 +582,18 @@
             "quantity": 1,
             "acquired_at": "2026-04-16T11:29:22.935796",
             "front_image_path": "packs/Himbo/Rare/3.png"
+          },
+          {
+            "card_id": 2,
+            "card_name": "Cowboy",
+            "rarity": "Uncommon",
+            "description": "",
+            "stats": {},
+            "is_shiny": true,
+            "is_secret": false,
+            "quantity": 2,
+            "acquired_at": "2026-04-16T11:29:32.202785",
+            "front_image_path": "packs/Himbo/Uncommon/2.png"
           }
         ]
       }
@@ -673,7 +685,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-04-16T11:29:34.472409",
+    "last_updated": "2026-04-16T11:29:43.788003",
     "total_users": 9,
     "version": "1.0"
   }
