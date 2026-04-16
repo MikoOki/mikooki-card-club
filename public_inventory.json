@@ -109,7 +109,7 @@
     },
     "testr": {
       "avatar": "https://ui-avatars.com/api/?name=testr&background=667eea&color=fff&size=128",
-      "total_cards": 6,
+      "total_cards": 9,
       "packs": {
         "Himbo": [
           {
@@ -125,7 +125,7 @@
             },
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 5,
+            "quantity": 7,
             "acquired_at": "2026-04-16T12:24:38.021351",
             "front_image_path": "packs/Himbo/Common/1.png"
           },
@@ -145,6 +145,18 @@
             "quantity": 1,
             "acquired_at": "2026-04-16T12:24:38.021371",
             "front_image_path": "packs/Himbo/Common/1.png"
+          },
+          {
+            "card_id": 3,
+            "card_name": "3",
+            "rarity": "Rare",
+            "description": "",
+            "stats": {},
+            "is_shiny": false,
+            "is_secret": false,
+            "quantity": 1,
+            "acquired_at": "2026-04-16T14:51:43.628656",
+            "front_image_path": "packs/Himbo/Rare/3.png"
           }
         ]
       }
@@ -228,7 +240,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-04-16T14:51:35.825810",
+    "last_updated": "2026-04-16T14:51:50.054981",
     "total_users": 2,
     "version": "1.0"
   }
