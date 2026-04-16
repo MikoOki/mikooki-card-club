@@ -258,67 +258,6 @@
         ]
       }
     },
-    "Tolben": {
-      "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/57e51fab-864e-4fe5-89f6-f9cd0810f141-profile_image-300x300.jpeg",
-      "total_cards": 21,
-      "packs": {
-        "Himbo": [
-          {
-            "card_id": 1,
-            "card_name": "Hazard",
-            "rarity": "Common",
-            "description": "Woof Woof, This hot Scottish man.",
-            "stats": {
-              "Heart": {
-                "value": "Large and soft",
-                "icon": "\u2764\ufe0f"
-              }
-            },
-            "is_shiny": false,
-            "is_secret": false,
-            "quantity": 13,
-            "acquired_at": "2026-01-17T15:03:54.781858",
-            "front_image_path": "packs/Himbo/Common/1.png"
-          },
-          {
-            "card_id": 2,
-            "card_name": "Cowboy",
-            "rarity": "Uncommon",
-            "description": "",
-            "stats": {},
-            "is_shiny": false,
-            "is_secret": false,
-            "quantity": 6,
-            "acquired_at": "2026-01-17T15:06:49.666287",
-            "front_image_path": "packs/Himbo/Uncommon/2.png"
-          },
-          {
-            "card_id": 2,
-            "card_name": "Cowboy",
-            "rarity": "Uncommon",
-            "description": "",
-            "stats": {},
-            "is_shiny": true,
-            "is_secret": false,
-            "quantity": 1,
-            "acquired_at": "2026-01-17T15:32:42.745369",
-            "front_image_path": "packs/Himbo/Uncommon/2.png"
-          },
-          {
-            "card_id": 3,
-            "card_name": "3",
-            "rarity": "Rare",
-            "description": "",
-            "stats": {},
-            "is_shiny": false,
-            "is_secret": false,
-            "quantity": 1,
-            "acquired_at": "2026-01-17T15:32:42.745382",
-            "front_image_path": "packs/Himbo/Rare/3.png"
-          }
-        ]
-      }
-    },
     "TEstt": {
       "avatar": "https://static-cdn.jtvnw.net/user-default-pictures-uv/294c98b5-e34d-42cd-a8f0-140b72fba9b0-profile_image-300x300.png",
       "total_cards": 3,
@@ -519,72 +458,6 @@
           }
         ]
       }
-    },
-    "joe billingsworth": {
-      "avatar": "https://ui-avatars.com/api/?name=joe billingsworth&background=667eea&color=fff&size=128",
-      "total_cards": 15,
-      "packs": {
-        "Himbo": [
-          {
-            "card_id": 2,
-            "card_name": "Cowboy",
-            "rarity": "Uncommon",
-            "description": "",
-            "stats": {},
-            "is_shiny": false,
-            "is_secret": false,
-            "quantity": 3,
-            "acquired_at": "2026-04-15T11:28:21.084218",
-            "front_image_path": "packs/Himbo/Uncommon/2.png"
-          },
-          {
-            "card_id": 1,
-            "card_name": "Hazard",
-            "rarity": "Common",
-            "description": "Woof Woof, This hot Scottish man.",
-            "stats": {
-              "Heart": {
-                "value": "Large and soft",
-                "icon": "\u2764\ufe0f"
-              }
-            },
-            "is_shiny": false,
-            "is_secret": false,
-            "quantity": 9,
-            "acquired_at": "2026-04-15T11:28:21.084232",
-            "front_image_path": "packs/Himbo/Common/1.png"
-          },
-          {
-            "card_id": 1,
-            "card_name": "Hazard",
-            "rarity": "Common",
-            "description": "Woof Woof, This hot Scottish man.",
-            "stats": {
-              "Heart": {
-                "value": "Large and soft",
-                "icon": "\u2764\ufe0f"
-              }
-            },
-            "is_shiny": false,
-            "is_secret": true,
-            "quantity": 2,
-            "acquired_at": "2026-04-15T14:10:40.796108",
-            "front_image_path": "packs/Himbo/Common/1_secret.png"
-          },
-          {
-            "card_id": 3,
-            "card_name": "3",
-            "rarity": "Rare",
-            "description": "",
-            "stats": {},
-            "is_shiny": false,
-            "is_secret": false,
-            "quantity": 1,
-            "acquired_at": "2026-04-15T14:11:05.382769",
-            "front_image_path": "packs/Himbo/Rare/3.png"
-          }
-        ]
-      }
     }
   },
   "discoveries": {
@@ -669,8 +542,8 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-04-15T14:11:27.642155",
-    "total_users": 9,
+    "last_updated": "2026-04-16T11:07:20.923402",
+    "total_users": 7,
     "version": "1.0"
   }
 }
