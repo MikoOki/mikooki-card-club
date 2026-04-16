@@ -461,7 +461,7 @@
     },
     "useruser": {
       "avatar": "https://static-cdn.jtvnw.net/user-default-pictures-uv/de130ab0-def7-11e9-b668-784f43822e80-profile_image-300x300.png",
-      "total_cards": 39,
+      "total_cards": 45,
       "packs": {
         "Himbo": [
           {
@@ -477,7 +477,7 @@
             },
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 32,
+            "quantity": 35,
             "acquired_at": "2026-04-16T11:15:19.802939",
             "front_image_path": "packs/Himbo/Common/1.png"
           },
@@ -489,7 +489,7 @@
             "stats": {},
             "is_shiny": false,
             "is_secret": false,
-            "quantity": 5,
+            "quantity": 7,
             "acquired_at": "2026-04-16T11:19:34.386043",
             "front_image_path": "packs/Himbo/Uncommon/2.png"
           },
@@ -521,6 +521,18 @@
             "quantity": 1,
             "acquired_at": "2026-04-16T11:23:29.756320",
             "front_image_path": "packs/Himbo/Common/1.png"
+          },
+          {
+            "card_id": 3,
+            "card_name": "3",
+            "rarity": "Rare",
+            "description": "",
+            "stats": {},
+            "is_shiny": true,
+            "is_secret": false,
+            "quantity": 1,
+            "acquired_at": "2026-04-16T11:26:06.603864",
+            "front_image_path": "packs/Himbo/Rare/3.png"
           }
         ]
       }
@@ -556,6 +568,10 @@
         "normal": {
           "username": "test",
           "discovered_at": "2026-01-23T13:45:14.336330"
+        },
+        "shiny": {
+          "username": "useruser",
+          "discovered_at": "2026-04-16T11:26:06.603864"
         }
       }
     }
@@ -608,7 +624,7 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-04-16T11:26:02.941008",
+    "last_updated": "2026-04-16T11:26:17.487879",
     "total_users": 8,
     "version": "1.0"
   }
