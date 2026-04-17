@@ -77,6 +77,134 @@
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
+        .collection-dashboard {
+            display: none;
+            gap: 22px;
+            margin-bottom: 36px;
+            align-items: stretch;
+        }
+
+        .collection-overview,
+        .pack-mastery {
+            background: rgba(255, 255, 255, 0.14);
+            border: 2px solid rgba(255, 255, 255, 0.28);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .collection-overview {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .pack-mastery {
+            width: 320px;
+        }
+
+        .dashboard-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .collection-progress-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .progress-pill {
+            background: rgba(255, 255, 255, 0.22);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.9em;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #d985ff 0%, #65d9ff 45%, #7de1a8 100%);
+        }
+
+        .rarity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
+            gap: 10px;
+        }
+
+        .rarity-card {
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .rarity-label {
+            font-size: 0.9em;
+            opacity: 0.95;
+            margin-bottom: 4px;
+        }
+
+        .rarity-value {
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .pack-mastery-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 220px;
+            overflow-y: auto;
+            padding-right: 2px;
+        }
+
+        .pack-mastery-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .pack-mastery-name {
+            font-size: 0.95em;
+        }
+
+        .pack-mastery-value {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .mini-progress-track {
+            grid-column: 1 / -1;
+            width: 100%;
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #57d593 0%, #68d4ff 100%);
+        }
+
         .user-avatar {
             width: 80px;
             height: 80px;
@@ -108,6 +236,72 @@
             border-radius: 15px;
             margin-bottom: 25px;
             border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .pack-header-main {
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        .pack-header-left {
+            min-width: 0;
+        }
+
+        .pack-header-right {
+            width: 340px;
+            background: rgba(0, 0, 0, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 14px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .pack-progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95em;
+            font-weight: 700;
+        }
+
+        .pack-counter-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+        }
+
+        .pack-counter {
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 8px;
+        }
+
+        .pack-counter-label {
+            font-size: 0.8em;
+            opacity: 0.9;
+            margin-bottom: 2px;
+        }
+
+        .pack-counter-value {
+            font-size: 0.95em;
+            font-weight: 700;
+        }
+
+        .pack-rarity-list {
+            display: grid;
+            gap: 6px;
+        }
+
+        .pack-rarity-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85em;
+            opacity: 0.95;
         }
 
         .pack-header h3 {
@@ -568,6 +762,26 @@
             color: #ff6b6b;
             font-size: 1.2em;
         }
+
+        @media (max-width: 1080px) {
+            .collection-dashboard {
+                flex-direction: column;
+            }
+
+            .pack-mastery {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 920px) {
+            .pack-header-main {
+                flex-direction: column;
+            }
+
+            .pack-header-right {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -593,6 +807,24 @@
             </div>
         </div>
 
+        <div class="collection-dashboard" id="collectionDashboard">
+            <div class="collection-overview">
+                <div class="dashboard-title">Collection Progress</div>
+                <div class="collection-progress-summary">
+                    <span>All Packs</span>
+                    <span class="progress-pill" id="globalProgressText">0 / 0 cards</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="globalProgressFill" style="width: 0%;"></div>
+                </div>
+                <div class="rarity-grid" id="globalRarityGrid"></div>
+            </div>
+            <div class="pack-mastery">
+                <div class="dashboard-title">Pack Mastery</div>
+                <div class="pack-mastery-list" id="packMasteryList"></div>
+            </div>
+        </div>
+
         <div id="packsContainer"></div>
 
         <div class="last-updated" id="lastUpdated"></div>
@@ -601,6 +833,7 @@
     <script>
         let allData = null;
         let currentUser = null;
+        const DEFAULT_RARITY_ORDER = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary', 'Mythic', 'Really Rare'];
         // Image base URL - GitHub repository for card images
         const IMAGE_BASE_URL = 'https://raw.githubusercontent.com/MikoOki/mikooki-card-club/main/';
 
@@ -646,6 +879,7 @@
             const username = document.getElementById('userSelect').value;
             if (!username || !allData) {
                 document.getElementById('userInfo').style.display = 'none';
+            document.getElementById('collectionDashboard').style.display = 'none';
                 document.getElementById('packsContainer').innerHTML = '';
                 return;
             }
@@ -657,9 +891,163 @@
             document.getElementById('userAvatar').src = currentUser.avatar;
             document.getElementById('username').textContent = username;
             document.getElementById('totalCards').textContent = `${currentUser.total_cards} cards`;
+            document.getElementById('collectionDashboard').style.display = 'flex';
+
+            renderCollectionDashboard();
 
             // Display cards by pack
             displayCardsByPack();
+        }
+
+        function getPackMetadata(packName) {
+            return (allData && allData.all_cards && allData.all_cards[packName]) ? allData.all_cards[packName] : [];
+        }
+
+        function buildPackStats(packName, ownedCards) {
+            const metadataCards = getPackMetadata(packName);
+            const metadataById = new Map();
+            metadataCards.forEach(metaCard => metadataById.set(String(metaCard.card_id), metaCard));
+
+            // Fallback if metadata is missing: infer base cards from owned entries.
+            if (metadataCards.length === 0 && Array.isArray(ownedCards)) {
+                ownedCards.forEach(card => {
+                    const key = String(card.card_id);
+                    if (!metadataById.has(key)) {
+                        metadataById.set(key, {
+                            card_id: card.card_id,
+                            rarity: card.rarity,
+                            has_secret: false,
+                            secret_image_path: null
+                        });
+                    }
+                });
+            }
+
+            const baseDiscoveredIds = new Set();
+            const shinyDiscoveredIds = new Set();
+            const secretDiscoveredIds = new Set();
+
+            (ownedCards || []).forEach(card => {
+                const id = String(card.card_id);
+                if (card.is_secret === true) {
+                    secretDiscoveredIds.add(id);
+                    return;
+                }
+                if (card.is_shiny === true) {
+                    shinyDiscoveredIds.add(id);
+                    return;
+                }
+                baseDiscoveredIds.add(id);
+            });
+
+            const rarityTotals = {};
+            const rarityDiscovered = {};
+            DEFAULT_RARITY_ORDER.forEach(r => {
+                rarityTotals[r] = 0;
+                rarityDiscovered[r] = 0;
+            });
+
+            let totalBase = 0;
+            let totalSecretPossible = 0;
+            let totalShinyPossible = metadataById.size;
+
+            for (const meta of metadataById.values()) {
+                totalBase += 1;
+                const rarityName = meta.rarity || 'Common';
+                if (rarityTotals[rarityName] === undefined) {
+                    rarityTotals[rarityName] = 0;
+                    rarityDiscovered[rarityName] = 0;
+                }
+                rarityTotals[rarityName] += 1;
+                if (baseDiscoveredIds.has(String(meta.card_id))) {
+                    rarityDiscovered[rarityName] += 1;
+                }
+                if (meta.has_secret || meta.secret_image_path) {
+                    totalSecretPossible += 1;
+                }
+            }
+
+            return {
+                packName,
+                totalBase,
+                discoveredBase: baseDiscoveredIds.size,
+                totalShinyPossible,
+                discoveredShiny: shinyDiscoveredIds.size,
+                totalSecretPossible,
+                discoveredSecret: secretDiscoveredIds.size,
+                rarityTotals,
+                rarityDiscovered
+            };
+        }
+
+        function getAllPackStatsForUser() {
+            const packNames = new Set([
+                ...Object.keys((allData && allData.all_cards) || {}),
+                ...Object.keys((currentUser && currentUser.packs) || {})
+            ]);
+
+            return [...packNames].sort((a, b) => a.localeCompare(b)).map(packName => {
+                const ownedCards = (currentUser && currentUser.packs && currentUser.packs[packName]) || [];
+                return buildPackStats(packName, ownedCards);
+            });
+        }
+
+        function renderCollectionDashboard() {
+            if (!currentUser || !allData) return;
+
+            const allPackStats = getAllPackStatsForUser();
+            const totalBase = allPackStats.reduce((sum, p) => sum + p.totalBase, 0);
+            const discoveredBase = allPackStats.reduce((sum, p) => sum + p.discoveredBase, 0);
+            const progressPercent = totalBase > 0 ? (discoveredBase / totalBase) * 100 : 0;
+
+            document.getElementById('globalProgressText').textContent = `${discoveredBase} / ${totalBase} cards`;
+            document.getElementById('globalProgressFill').style.width = `${Math.min(progressPercent, 100)}%`;
+
+            const globalRarityTotals = {};
+            const globalRarityDiscovered = {};
+            DEFAULT_RARITY_ORDER.forEach(r => {
+                globalRarityTotals[r] = 0;
+                globalRarityDiscovered[r] = 0;
+            });
+
+            allPackStats.forEach(packStat => {
+                Object.entries(packStat.rarityTotals).forEach(([rarity, value]) => {
+                    if (globalRarityTotals[rarity] === undefined) {
+                        globalRarityTotals[rarity] = 0;
+                        globalRarityDiscovered[rarity] = 0;
+                    }
+                    globalRarityTotals[rarity] += value;
+                    globalRarityDiscovered[rarity] += (packStat.rarityDiscovered[rarity] || 0);
+                });
+            });
+
+            const rarityGrid = document.getElementById('globalRarityGrid');
+            rarityGrid.innerHTML = '';
+            Object.keys(globalRarityTotals)
+                .filter(rarity => globalRarityTotals[rarity] > 0)
+                .forEach(rarity => {
+                    const card = document.createElement('div');
+                    card.className = 'rarity-card';
+                    card.innerHTML = `
+                        <div class="rarity-label">${rarity}</div>
+                        <div class="rarity-value">${globalRarityDiscovered[rarity]} / ${globalRarityTotals[rarity]}</div>
+                    `;
+                    rarityGrid.appendChild(card);
+                });
+
+            const packMasteryList = document.getElementById('packMasteryList');
+            packMasteryList.innerHTML = '';
+            allPackStats.forEach(packStat => {
+                const percent = packStat.totalBase > 0 ? (packStat.discoveredBase / packStat.totalBase) * 100 : 0;
+                const row = document.createElement('div');
+                row.className = 'pack-mastery-item';
+                row.innerHTML = `
+                    <div class="pack-mastery-name">${packStat.packName}</div>
+                    <div class="pack-mastery-value">${packStat.discoveredBase} / ${packStat.totalBase}</div>
+                    <div class="mini-progress-track"><div class="mini-progress-fill" style="width: ${Math.min(percent, 100)}%;"></div></div>
+                `;
+                packMasteryList.appendChild(row);
+            });
         }
 
         function displayCardsByPack() {
@@ -685,6 +1073,10 @@
             for (const [packName, cards] of Object.entries(currentUser.packs)) {
                 const packSection = document.createElement('div');
                 packSection.className = 'pack-section';
+                const packStats = buildPackStats(packName, cards);
+                const packProgressPercent = packStats.totalBase > 0
+                    ? (packStats.discoveredBase / packStats.totalBase) * 100
+                    : 0;
 
                 // Sort cards: Secret first, then Shiny (by rarity), then Normal (by rarity)
                 const sortedCards = [...cards].sort((a, b) => {
@@ -733,17 +1125,52 @@
 
                 const totalInPack = sortedCards.reduce((sum, card) => sum + card.quantity, 0);
                 const uniqueCards = sortedCards.length;
+                const packRarityRows = Object.keys(packStats.rarityTotals)
+                    .filter(rarity => packStats.rarityTotals[rarity] > 0)
+                    .map(rarity => `
+                        <div class="pack-rarity-item">
+                            <span>${rarity}</span>
+                            <span>${packStats.rarityDiscovered[rarity] || 0}/${packStats.rarityTotals[rarity]}</span>
+                        </div>
+                    `)
+                    .join('');
 
                 packSection.innerHTML = `
                     <div class="pack-header">
-                        <h3>${packName}</h3>
-                        <div class="pack-stats">${uniqueCards} unique cards • ${totalInPack} total</div>
-                        <a href="pack.html?pack=${encodeURIComponent(packName)}" 
-                           style="display: inline-block; margin-top: 15px; padding: 10px 20px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 15px; color: white; text-decoration: none; transition: all 0.3s;"
-                           onmouseover="this.style.background='rgba(255, 255, 255, 0.35)'; this.style.transform='translateY(-2px)'"
-                           onmouseout="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(0)'">
-                            View Pack Discovery →
-                        </a>
+                        <div class="pack-header-main">
+                            <div class="pack-header-left">
+                                <h3>${packName}</h3>
+                                <div class="pack-stats">${uniqueCards} unique cards • ${totalInPack} total</div>
+                                <a href="pack.html?pack=${encodeURIComponent(packName)}" 
+                                   style="display: inline-block; margin-top: 15px; padding: 10px 20px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(15px); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 15px; color: white; text-decoration: none; transition: all 0.3s;"
+                                   onmouseover="this.style.background='rgba(255, 255, 255, 0.35)'; this.style.transform='translateY(-2px)'"
+                                   onmouseout="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(0)'">
+                                    View Pack Discovery →
+                                </a>
+                            </div>
+                            <div class="pack-header-right">
+                                <div class="pack-progress-header">
+                                    <span>Collection Progress</span>
+                                    <span>${packStats.discoveredBase} / ${packStats.totalBase}</span>
+                                </div>
+                                <div class="progress-track" style="margin-bottom: 0;">
+                                    <div class="progress-fill" style="width: ${Math.min(packProgressPercent, 100)}%;"></div>
+                                </div>
+                                <div class="pack-counter-grid">
+                                    <div class="pack-counter">
+                                        <div class="pack-counter-label">Shiny</div>
+                                        <div class="pack-counter-value">${packStats.discoveredShiny} / ${packStats.totalShinyPossible}</div>
+                                    </div>
+                                    <div class="pack-counter">
+                                        <div class="pack-counter-label">Secret</div>
+                                        <div class="pack-counter-value">${packStats.discoveredSecret} / ${packStats.totalSecretPossible}</div>
+                                    </div>
+                                </div>
+                                <div class="pack-rarity-list">
+                                    ${packRarityRows}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="cards-grid" id="pack-${packName.replace(/\s+/g, '-')}"></div>
                 `;
